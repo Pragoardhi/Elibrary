@@ -1,0 +1,77 @@
+#buttonSubmit {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+  padding-left: 40px;
+  padding-right: 40px
+}
+
+#link {
+  margin: 20px;
+}
+
+#navbarNav {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#Navigasi {
+  color: white;
+  margin-left: 20px;
+}
+
+#Navigasi:hover {
+  background-color: steelblue;
+}
+
+#logoFooter {
+  margin: 0px;
+}
+
+#link {
+  text-align: right;
+}
+
+#card1 {
+  width: 30rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Title-buku{
+  width: 100%;
+}
+
+.Text-title-buku{
+  text-align: center;
+}
+
+.Text-title-buku-2{
+  text-align: center;
+  color: gray;
+}
+
+#marketing > .row > #kolom {
+  padding-top: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border: 1px solid gray;
+}
+
+#judul{
+background-color: black;
+color: white;
+display: table-cell;
+}
+
+#daftar > .row > #daftar1 {
+  padding-top: 10px;
+  margin-bottom: 1.5rem;
+  text-align: center
+}
+
+#fontMasuk{
+  width: 100%;
+  font-size: 40px;
+  padding: 20px;
+}
