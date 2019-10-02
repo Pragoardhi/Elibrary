@@ -10,7 +10,11 @@ class Login extends CI_Controller
     }
     public function index()
     {
-        $this->load->view('login/login_page');
+        if ($this->session->userdata('status') != "login") {
+            $this->load->view('login/login_page');
+        } else {
+            $this->load->view('admin/admin');
+        }
     }
     public function login()
     {
@@ -25,10 +29,15 @@ class Login extends CI_Controller
             $this->session->set_userdata($data_session);
             redirect(base_url('Admin'));
         } else if ($check == -1) {
-            echo "bukan admin";
+            echo "user";
         } else {
             echo "Username dan password salah !";
             die();
         }
+    }
+    public function logout()
+    {
+        $this->session->sess_destroy();
+        redirect(base_url('Login'));
     }
 }
