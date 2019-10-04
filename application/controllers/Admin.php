@@ -15,7 +15,13 @@ class Admin extends CI_Controller
     }
     public function Daftarpengguna()
     {
-        $data['username'] = $this->session->userdata('username');
-        $this->load->view('admin/daftarpengguna', $data);
+        if ($this->session->userdata('statusadmin') != "login") {
+            redirect(base_url('Login'));
+        } else {
+            $data['username'] = $this->session->userdata('username');
+            $this->load->model('admin_model');
+            $data['listuser'] = $this->admin_model->getUser();
+            $this->load->view('admin/daftarpengguna', $data);
+        }
     }
 }
