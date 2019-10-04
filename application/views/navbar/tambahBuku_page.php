@@ -21,7 +21,7 @@
     <div class="container">
 		<div id="judul">
 			<h1>Pengadaan Pustaka</h1>
-		  </div>
+		</div>
 		<form style="font-weight: bold;">
 			<div class="form-row">
 				<div class="form-group col-md-6">
