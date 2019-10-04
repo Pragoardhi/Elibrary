@@ -6,10 +6,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto" id="navbarNav">
             <a class="nav-item nav-link" href="<?php echo base_url() ?>" id="Navigasi">BERANDA </a>
-            <a class="nav-item nav-link" href="KatalogBuku.html" id="Navigasi">KATALOG BUKU</a>
-            <a class="nav-item nav-link" href="DataAnggota.html" id="Navigasi">DATA ANGGOTA</a>
+            <a class="nav-item nav-link" href="<?php echo site_url("Katalog"); ?>" id="Navigasi">KATALOG BUKU</a>
+            <a class="nav-item nav-link" href="<?php echo site_url("DataAnggota"); ?>" id="Navigasi">DATA ANGGOTA</a>
             <a class="nav-item nav-link" href="#" id="Navigasi">TRANSAKSI BUKU</a>
-            <a class="nav-item nav-link" href="#" id="Navigasi">TAMBAH BUKU</a>
+            <a class="nav-item nav-link" href="<?php echo site_url("TambahBuku"); ?>" id="Navigasi">TAMBAH BUKU</a>
             <a class="nav-item nav-link" href="#" id="Navigasi">CMS</a>
             <a class="nav-item nav-link" href="#" id="Navigasi">HASIL LAPORAN</a>
         </div>
