@@ -10,21 +10,22 @@ class Login extends CI_Controller
     }
     public function index()
     {
-        if ($this->session->userdata('status') != "login") {
-            $this->load->view('login/login_page');
-        } else {
-            $this->load->view('admin/admin');
+        if ($this->session->userdata('statusadmin') == "login") {
+            $this->session->sess_destroy();
+            redirect(base_url('Login'));
         }
+        $this->load->view('login/login_page');
     }
     public function login()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $check = $this->login_model->login($email, $password);
+        $username = $this->login_model->getUsername($email, $password);
         if ($check == 1) {
             $data_session = array(
-                'email' => $email,
-                'status' => 'login'
+                'statusadmin' => 'login',
+                'username' => $username
             );
             $this->session->set_userdata($data_session);
             redirect(base_url('Admin'));

@@ -3,13 +3,19 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin extends CI_Controller
 {
+
     public function index()
     {
-        if ($this->session->userdata('status') != "login") {
-            // $this->load->view('login//login_page');
-            redirect(base_url("Login"));
+        if ($this->session->userdata('statusadmin') != "login") {
+            redirect(base_url('Login'));
         } else {
-            $this->load->view('admin/admin');
+            $data['username'] = $this->session->userdata('username');
+            $this->load->view('admin/dashboard', $data);
         }
+    }
+    public function Daftarpengguna()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $this->load->view('admin/daftarpengguna', $data);
     }
 }
