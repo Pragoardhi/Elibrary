@@ -21,7 +21,18 @@ class Admin extends CI_Controller
             $data['username'] = $this->session->userdata('username');
             $this->load->model('admin_model');
             $data['listuser'] = $this->admin_model->getUser();
+
             $this->load->view('admin/daftarpengguna', $data);
         }
+    }
+    public function Saveedit()
+    {
+        $editid = $this->input->post('editid');
+        $editusername = $this->input->post('editusername');
+        $editemail = $this->input->post('editemail');
+
+        $this->load->model('admin_model');
+        $this->admin_model->saveEditUser($editid, $editusername, $editemail);
+        redirect(base_url('Admin/Daftarpengguna'));
     }
 }

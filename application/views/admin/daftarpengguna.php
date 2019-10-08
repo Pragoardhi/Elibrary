@@ -59,20 +59,23 @@
                   <thead>
                     <tr>
                       <th>No</th>
-                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Email</th>
                       <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                       <th>No</th>
-                      <th>Name</th>
+                      <th>Username</th>
+                      <th>Email</th>
                       <th>Status</th>
+                      <th>Action</th>
                     </tr>
                   </tfoot>
                   <tbody>
                     <?php
-
                     $count  = count($listuser);
 
                     for ($i = 0; $i < $count; $i++) {
@@ -80,20 +83,68 @@
                       echo '<tr>';
                       echo '<td>' . $number . '</td>';
                       echo '<td>' . $listuser[$i]["username"] . '</td>';
+                      echo '<td>' . $listuser[$i]["email"] . '</td>';
                       if ($listuser[$i]["status"] == "1") {
                         echo '<td> Admin </td>';
                       } else {
                         echo '<td> User </td>';
                       }
-                      echo '</tr>';
-                    }
-                    ?>
+                      ?>
+                      <td>
+                        <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
+                        <button class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+                      </td>
+                      </tr>
+                      <!-- edit modal -->
+                      <div class="modal fade" id="editModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Saveedit') ?>">
+                                <fieldset>
+                                  <div class="form-group">
+                                    <span></span>
+                                    <label class="col-md-4 control-label">No</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="id" name="editid" placeholder="Full Name" class="form-control" required="true" value="<?php echo $listuser[$i]["id"]; ?>" readonly="readonly"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <span></span>
+                                    <label class="col-md-4 control-label">Username</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="username" name="editusername" placeholder="Full Name" class="form-control" required="true" value="<?php echo $listuser[$i]["username"]; ?>"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="col-md-4 control-label">Email</label>
+                                    <div class="col-md-8 inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="email" name="editemail" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
+                                    </div>
+                                  </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-dark" id="buttonSubmit">Save</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                    <?php } ?>
                   </tbody>
                 </table>
+
               </div>
             </div>
           </div>
-
         </div>
         <!-- /.container-fluid -->
 
@@ -140,6 +191,7 @@
     </div>
   </div>
 
+
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -156,6 +208,7 @@
 
   <!-- Page level custom scripts -->
   <script src="<?php echo base_url('assets') ?>/js/demo/datatables-demo.js"></script>
+
 
 </body>
 
