@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('admin_model');
+        $this->load->helper('url');
     }
     public function index()
     {
@@ -14,6 +15,7 @@ class Admin extends CI_Controller
             redirect(base_url('Login'));
         } else {
             $data['username'] = $this->session->userdata('username');
+            $data['totaluser'] = $this->admin_model->getUser();
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -46,6 +48,12 @@ class Admin extends CI_Controller
             $tambahstatus = -1;
         }
         $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword);
+        redirect(base_url('Admin/Daftarpengguna'));
+    }
+    public function Deleteuser()
+    {
+        $id = $this->uri->segment(3);
+        $this->admin_model->Deleteuser($id);
         redirect(base_url('Admin/Daftarpengguna'));
     }
 }

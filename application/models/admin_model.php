@@ -16,8 +16,6 @@ class admin_model extends CI_Model
     public function deleteUser($id)
     {
         $this->db->query("DELETE FROM [dbo].[User] WHERE id='$id'");
-        $count = var_dump(getUser());
-        $this->db->query("DBCC CHECKIDENT('[eLibrary].[dbo].[User]', RESEED,$count)");
     }
     public function addUser($addusername, $addemail, $addstatus, $addpassword)
     {

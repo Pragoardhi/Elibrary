@@ -95,7 +95,7 @@
                         <?php
                           if ($listuser[$i]["status"] == "-1") {
                             ?>
-                          <button class="btn btn-danger" type="button" onclick=""><i class="fas fa-trash"></i></button>
+                          <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $i; ?>"><i class="fas fa-trash"></i></button>
                         <?php } ?>
                       </td>
                       </tr>
@@ -200,6 +200,24 @@
                               <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
                             </div>
                             </form>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Delete Modal-->
+                      <div class="modal fade" id="deleteModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Hapus <?php echo $listuser[$i]["username"] ?>?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">Pilih "Hapus" untuk menghapus <?php echo $listuser[$i]["username"] ?> dari daftar pengguna.</div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <a class="btn btn-primary" href="<?= base_url() ?>Admin/Deleteuser/<?php echo $listuser[$i]["id"] ?>">Hapus</a>
+                            </div>
                           </div>
                         </div>
                       </div>
