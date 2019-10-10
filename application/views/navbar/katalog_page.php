@@ -40,7 +40,7 @@
 
                 for($i = 0; $i < $count; $i++){
                     
-                    echo '<div class="col-lg-4" style="text-align: center">';
+                    echo '<div class="col-lg-3" style="text-align: center">';
                     echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
                     echo '<br>';
                     echo '<br>';
