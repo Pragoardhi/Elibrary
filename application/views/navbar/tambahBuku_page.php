@@ -89,6 +89,7 @@
 				</div>	
 				<div class="form-group">
                     <a href="Berhasil+buku.html" class="btn btn-secondary btn-lg " tabindex="-1" role="button" aria-disabled="true">Kirim</a>
+				</div>
 			</div>
 		</form>
 	</div>
