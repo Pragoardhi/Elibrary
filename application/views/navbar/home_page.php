@@ -56,47 +56,21 @@
     <div class="container" id="daftar">
         <div class="row">
 
-         <?php
-                $count  = count($listBook);
+            <?php
+            $count  = count($listBook);
 
-                for($i = $count-3; $i < $count; $i++){
-                    
-                    echo '<div class="col-lg-4" style="text-align: center">';
-                    echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
-                    echo '<br>';
-                    echo '<br>';
-                    echo '<h5>' . $listBook[$i]["Judul"] . '</h5>';
-                    echo '<p>'. $listBook[$i]["Penulis"] . '</p>';
-                    echo '<p>'. $listBook[$i]["Year"] . '</p>';
-                    echo '</div>';
+            for ($i = $count - 3; $i < $count; $i++) {
 
-           
-                }
+                echo '<div class="col-lg-4" style="text-align: center">';
+                echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
+                echo '<br>';
+                echo '<br>';
+                echo '<h5>' . $listBook[$i]["Judul"] . '</h5>';
+                echo '<p>' . $listBook[$i]["Penulis"] . '</p>';
+                echo '<p>' . $listBook[$i]["Year"] . '</p>';
+                echo '</div>';
+            }
             ?>
-            <!--<div class="col-lg-4" id="daftar1">
-                <img class="w-50" src="<?php echo base_url('assets') ?>/image/book-1.jpg">
-                <br>
-                <br>
-                <h5>Judul Buku</h5>
-                Author: <br>
-                Year:
-            </div>
-            <div class="col-lg-4" id="daftar1">
-                <img class="w-50" src="<?php echo base_url('assets') ?>/image/book-2.jpg">
-                <br>
-                <br>
-                <h5>Judul Buku</h5>
-                Author: <br>
-                Year:
-            </div>
-            <div class="col-lg-4" id="daftar1">
-                <img class="w-50" src="<?php echo base_url('assets') ?>/image/book-3.jpg">
-                <br>
-                <br>
-                <h5>Judul Buku</h5>
-                Author: <br>
-                Year:
-            </div> -->
         </div>
     </div>
 
