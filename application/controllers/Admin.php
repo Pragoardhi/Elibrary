@@ -16,6 +16,7 @@ class Admin extends CI_Controller
         } else {
             $data['username'] = $this->session->userdata('username');
             $data['totaluser'] = $this->admin_model->getUser();
+            $data['totalbuku'] = $this->admin_model->getBuku();
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -30,6 +31,17 @@ class Admin extends CI_Controller
             $this->load->view('admin/daftarpengguna', $data);
         }
     }
+    public function Daftarbuku()
+    {
+        if ($this->session->userdata('statusadmin') != "login") {
+            redirect(base_url('Login'));
+        } else {
+            $data['username'] = $this->session->userdata('username');
+            $data['listbuku'] = $this->admin_model->getBuku();
+
+            $this->load->view('admin/daftarbuku', $data);
+        }
+    }
     public function Saveedit()
     {
         $editid = $this->input->post('editid');
@@ -37,6 +49,11 @@ class Admin extends CI_Controller
         $editemail = $this->input->post('editemail');
 
         $this->admin_model->saveEditUser($editid, $editusername, $editemail);
+        redirect(base_url('Admin/Daftarpengguna'));
+    }
+    public function SaveeditBuku()
+    {
+
         redirect(base_url('Admin/Daftarpengguna'));
     }
     public function Adduser()
@@ -49,6 +66,19 @@ class Admin extends CI_Controller
         }
         $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword);
         redirect(base_url('Admin/Daftarpengguna'));
+    }
+    public function Addbuku()
+    {
+        $tambahjudul = $this->input->post('tambahjudul');
+        $tambahtipe = $this->input->post('tambahtipe');
+        $tambahpenulis = $this->input->post('tambahpenulis');
+        $tambahpenerbit = $this->input->post('tambahpenerbit');
+        $tambahisbn = $this->input->post('tambahisbn');
+        $tambahketerangan = $this->input->post('tambahketerangan');
+        $tambahgambar = $this->input->post('tambahgambar');
+        $tambahtahun = $this->input->post('tambahtahun');
+        echo $tambahgambar;
+        // redirect(base_url('Admin/Daftarbuku'));
     }
     public function Deleteuser()
     {
