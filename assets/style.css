@@ -58,11 +58,7 @@
   border: 1px solid gray;
 }
 
-#judul{
-background-color: black;
-color: white;
-display: table-cell;
-}
+
 
 #daftar > .row > #daftar1 {
   padding-top: 10px;

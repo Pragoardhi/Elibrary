@@ -17,12 +17,13 @@
 <body>
     <!-- head navbar -->
     <?php $this->load->view('template/header.php') ?>
+    <br>
     <!-- content -->
     <div class="container">
-      <div id="judul">
+      <div>
         <h1>Data Anggota</h1>
       </div>
-
+      <br>
       <div class="input-group" style="margin: 10px 0px 10px 0px">
         <input type="text" class="form-control" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
         <div class="input-group-append">

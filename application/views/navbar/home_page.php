@@ -48,9 +48,11 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <br>
     <div class="Title-Buku">
         <h1 class="Text-title-buku">Daftar Buku Terbaru</h1>
         <h4 class="Text-title-buku-2">Ada beberapa daftar buku yang baru masuk</h4>
+        <br>
     </div>
 
     <div class="container" id="daftar">
@@ -60,14 +62,13 @@
             $count  = count($listBook);
 
             for ($i = $count - 3; $i < $count; $i++) {
-
                 echo '<div class="col-lg-4" style="text-align: center">';
                 echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
                 echo '<br>';
                 echo '<br>';
-                echo '<h5>' . $listBook[$i]["Judul"] . '</h5>';
-                echo '<p>' . $listBook[$i]["Penulis"] . '</p>';
-                echo '<p>' . $listBook[$i]["Year"] . '</p>';
+                echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';
+                echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
+                echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
                 echo '</div>';
             }
             ?>
