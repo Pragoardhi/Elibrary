@@ -27,16 +27,16 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/4.jpg" alt="First slide">
+                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/d.jpg" alt="First slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/2.jpg" alt="Second slide">
+                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/b.jpg" alt="Second slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/3.jpg" alt="Third slide">
+                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/c.jpg" alt="Third slide">
             </div>
             <div class="carousel-item">
-                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/1.jpg" alt="Fourth slide">
+                <img class="d-block w-100" src="<?php echo base_url('assets') ?>/image/a.jpg" alt="Fourth slide">
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -59,7 +59,7 @@
          <?php
                 $count  = count($listBook);
 
-                for($i = 0; $i < 3; $i++){
+                for($i = $count-3; $i < $count; $i++){
                     
                     echo '<div class="col-lg-4" style="text-align: center">';
                     echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
@@ -70,6 +70,7 @@
                     echo '<p>'. $listBook[$i]["Year"] . '</p>';
                     echo '</div>';
 
+           
                 }
             ?>
             <!--<div class="col-lg-4" id="daftar1">
