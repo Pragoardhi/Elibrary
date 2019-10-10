@@ -48,6 +48,7 @@
             <span class="sr-only">Next</span>
         </a>
     </div>
+    <br>
     <div class="Title-Buku">
         <h1 class="Text-title-buku">Daftar Buku Terbaru</h1>
         <h4 class="Text-title-buku-2">Ada beberapa daftar buku yang baru masuk</h4>

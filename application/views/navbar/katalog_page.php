@@ -14,15 +14,17 @@
     <title>E-Library</title>
 </head>
 
+
 <body>
     <!-- head navbar -->
     <?php $this->load->view('template/header.php') ?>
     <!-- content -->
-
+    <br>
     <div class="container" style="margin-bottom: 50px">
-        <div id="judul">
+        <div>
             <h1>Katalog Buku</h1>
         </div>
+        <br>
         <div class="input-group" style="margin: 10px 0px 40px 0px">
             <select class="form-control">
                 <option selected>Type..</option>
