@@ -76,8 +76,7 @@
                   </tfoot>
                   <tbody>
                     <?php
-                    $count  = count($listuser);
-
+                    $count  = count($listuser);                    
                     for ($i = 0; $i < $count; $i++) {
                       $number = $i + 1;
                       echo '<tr>';

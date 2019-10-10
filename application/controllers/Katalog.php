@@ -5,6 +5,8 @@ class Katalog extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('navbar/katalog_page');
+        $this->load->model('katalog_buku');
+        $data['listBook'] = $this->katalog_buku->getBook();
+        $this->load->view('navbar/katalog_page', $data);
     }
 }
