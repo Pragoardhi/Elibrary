@@ -175,98 +175,13 @@
                                                                     <div class="form-group">
                                                                         <label class="control-label">Cover buku</label>
                                                                         <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="editgambar" name="editgambar" placeholder="Gambar" class="form-control" required="true" value="" type="file"></div>
+                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="editgambar" name="editgambar" placeholder="Gambar" class="form-control-file" required="true" value="" type="file"></div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="control-label">Tahun</label>
                                                                         <div class="inputGroupContainer">
                                                                             <div class="input-group"><span class="input-group-addon"></span><input id="edittahun" name="edittahun" placeholder="Tahun" class="form-control" required="true" value=""></div>
-                                                                        </div>
-                                                                    </div>
-                                                                </fieldset>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                                            <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
-                                                        </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- Tambah modal -->
-                                            <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalLabel">Tambah Buku</h5>
-                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">×</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Addbuku') ?>">
-                                                                <fieldset>
-                                                                    <div class="form-group">
-                                                                        <span></span>
-                                                                        <label class="control-label">No</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahid" name="tambahtid" placeholder="id" class="form-control" required="true" value="<?php echo count($listbuku) + 1; ?>" readonly="readonly"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <span></span>
-                                                                        <label class="control-label">Judul</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahjudul" name="tambahjudul" placeholder="Judul" class="form-control" required="true" value=""></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Tipe</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahtipe" name="tambahtipe" placeholder="Tipe" class="form-control" required="true" value=""></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Penulis</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahpenulis" name="tambahpenulis" placeholder="Penulis" class="form-control" required="true"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Penerbit</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahpenerbit" name="tambahpenerbit" placeholder="Penerbit" class="form-control" required="true" value=""></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">ISBN</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahisbn" name="tambahisbn" placeholder="ISBN" class="form-control" required="true" value=""></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Harga</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahharga" name="tambahisbn" placeholder="Harga" class="form-control" required="true" value="" type="number"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Keterangan</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><textarea id="tambahketerangan" name="tambahketerangan" placeholder="Keterangan" class="form-control" required="true" value=""></textarea></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Cover buku</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahgambar" name="tambahgambar" placeholder="Gambar" class="form-control" required="true" value="" type="file"></div>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="form-group">
-                                                                        <label class="control-label">Tahun</label>
-                                                                        <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="tambahtahun" name="tambahtahun" placeholder="Tahun" class="form-control" required="true" value=""></div>
                                                                         </div>
                                                                     </div>
                                                                 </fieldset>
@@ -329,6 +244,92 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    <!-- Tambah modal -->
+    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Buku</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Addbuku') ?>">
+                        <fieldset>
+                            <div class="form-group">
+                                <span></span>
+                                <label class="control-label">No</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahid" name="tambahtid" placeholder="id" class="form-control" required="true" value="<?php echo count($listbuku) + 1; ?>" readonly="readonly"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <span></span>
+                                <label class="control-label">Judul</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahjudul" name="tambahjudul" placeholder="Judul" class="form-control" required="true" value=""></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Tipe</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahtipe" name="tambahtipe" placeholder="Tipe" class="form-control" required="true" value=""></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Penulis</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahpenulis" name="tambahpenulis" placeholder="Penulis" class="form-control" required="true"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Penerbit</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahpenerbit" name="tambahpenerbit" placeholder="Penerbit" class="form-control" required="true" value=""></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">ISBN</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahisbn" name="tambahisbn" placeholder="ISBN" class="form-control" required="true" value=""></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Harga</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahharga" name="tambahisbn" placeholder="Harga" class="form-control" required="true" value="" type="number"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Keterangan</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><textarea id="tambahketerangan" name="tambahketerangan" placeholder="Keterangan" class="form-control" required="true" value=""></textarea></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Cover buku</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahgambar" name="tambahgambar" placeholder="Gambar" class="form-control-file" required="true" value="" type="file"></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Tahun</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahtahun" name="tambahtahun" placeholder="Tahun" class="form-control" required="true" value=""></div>
+                                </div>
+                            </div>
+                        </fieldset>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
