@@ -38,8 +38,7 @@
             <?php
                 $count  = count($listBook);
 
-                for($i = 0; $i < $count; $i++){
-                    
+                for($i = 0; $i < $count; $i++) {
                     echo '<div class="col-lg-3" style="text-align: center">';
                     echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
                     echo '<br>';
@@ -48,19 +47,8 @@
                     echo '<p>'. $listBook[$i]["Penulis"] . '</p>';
                     echo '<p>'. $listBook[$i]["Year"] . '</p>';
                     echo '</div>';
-
                 }
             ?>
-            
-            <!-- <div class="col-sm" style="text-align: center">
-                <img class="w-50" src="<?php echo base_url('assets') ?>/image/book-2.jpg">
-                <br>
-                <br>
-                <h5>Judul Buku</h5>
-                Author: <br>
-                Year:
-            </div>
-            ?> -->
         </div>
     </div>
     </div>
