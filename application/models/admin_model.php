@@ -13,4 +13,12 @@ class admin_model extends CI_Model
     {
         $this->db->query("UPDATE [dbo].[User] SET email='$newemail', username='$newusername' WHERE id='$id'");
     }
+    public function deleteUser($id)
+    {
+        $this->db->query("DELETE FROM [dbo].[User] WHERE id='$id'");
+    }
+    public function addUser($addusername, $addemail, $addstatus, $addpassword)
+    {
+        $this->db->query("INSERT INTO [dbo].[User](email,pass,status,username) VALUES ('$addemail','$addpassword','$addstatus','$addusername')");
+    }
 }

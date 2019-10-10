@@ -51,7 +51,7 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Daftar Pengguna</h6>
+              <h3 class="m-0 font-weight-bold text-primary">Daftar Pengguna <button class="btn btn-primary" data-toggle="modal" data-target="#tambahModal" style="float:right">Tambah Pengguna</button></h3>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -91,7 +91,11 @@
                       ?>
                       <td>
                         <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
-                        <button class="btn btn-danger" type="button"><i class="fas fa-trash"></i></button>
+                        <?php
+                          if ($listuser[$i]["status"] == "-1") {
+                            ?>
+                          <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $i; ?>"><i class="fas fa-trash"></i></button>
+                        <?php } ?>
                       </td>
                       </tr>
                       <!-- edit modal -->
@@ -109,31 +113,110 @@
                                 <fieldset>
                                   <div class="form-group">
                                     <span></span>
-                                    <label class="col-md-4 control-label">No</label>
-                                    <div class="col-md-8 inputGroupContainer">
-                                      <div class="input-group"><span class="input-group-addon"></span><input id="id" name="editid" placeholder="Full Name" class="form-control" required="true" value="<?php echo $listuser[$i]["id"]; ?>" readonly="readonly"></div>
+                                    <label class="control-label">No</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editid" name="editid" placeholder="Full Name" class="form-control" required="true" value="<?php echo $listuser[$i]["id"]; ?>" readonly="readonly"></div>
                                     </div>
                                   </div>
                                   <div class="form-group">
                                     <span></span>
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8 inputGroupContainer">
-                                      <div class="input-group"><span class="input-group-addon"></span><input id="username" name="editusername" placeholder="Full Name" class="form-control" required="true" value="<?php echo $listuser[$i]["username"]; ?>"></div>
+                                    <label class="control-label">Username</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editusername" name="editusername" placeholder="Full Name" class="form-control" required="true" value="<?php echo $listuser[$i]["username"]; ?>"></div>
                                     </div>
                                   </div>
                                   <div class="form-group">
-                                    <label class="col-md-4 control-label">Email</label>
-                                    <div class="col-md-8 inputGroupContainer">
-                                      <div class="input-group"><span class="input-group-addon"></span><input id="email" name="editemail" placeholder="Email" class="form-control" required="true" value="" type="text"></div>
+                                    <label class="ontrol-label">Email</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editemail" name="editemail" placeholder="Email" class="form-control" required="true" value="" type="email"></div>
                                     </div>
                                   </div>
                                 </fieldset>
                             </div>
                             <div class="modal-footer">
                               <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                              <button type="submit" class="btn btn-dark" id="buttonSubmit">Save</button>
+                              <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
                             </div>
                             </form>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Tambah modal -->
+                      <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Tambah Pengguna</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Adduser') ?>">
+                                <fieldset>
+                                  <div class="form-group">
+                                    <span></span>
+                                    <label class="control-label">No</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="tambahid" name="tambahtid" placeholder="Full Name" class="form-control" required="true" value="<?php echo count($listuser) + 1; ?>" readonly="readonly"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <span></span>
+                                    <label class="control-label">Username</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="tambahusername" name="tambahusername" placeholder="Full Name" class="form-control" required="true" value=""></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Email</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="tambahemail" name="tambahemail" placeholder="Email" class="form-control" required="true" value="" type="email"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Status</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="tambahstatus" name="tambahstatus" placeholder="Email" class="form-control" required="true" value="User" type="text" readonly="readonly"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Password</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="tambahpassword" name="tambahpassword" placeholder="Password" class="form-control" required="true" value="" type="password"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Confirm Password</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="confirmtambahpassword" name="confirmtambahpassword" placeholder="Confirm Password" class="form-control" required="true" value="" type="password"></div>
+                                    </div>
+                                  </div>
+                                </fieldset>
+                            </div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
+                            </div>
+                            </form>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- Delete Modal-->
+                      <div class="modal fade" id="deleteModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Hapus <?php echo $listuser[$i]["username"] ?>?</h5>
+                              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">Pilih "Hapus" untuk menghapus <?php echo $listuser[$i]["username"] ?> dari daftar pengguna.</div>
+                            <div class="modal-footer">
+                              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                              <a class="btn btn-primary" href="<?= base_url() ?>Admin/Deleteuser/<?php echo $listuser[$i]["id"] ?>">Hapus</a>
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -189,8 +272,21 @@
       </div>
     </div>
   </div>
+  <script>
+    var password = document.getElementById("tambahpassword"),
+      confirm_password = document.getElementById("confirmtambahpassword");
 
+    function validatePassword() {
+      if (password.value != confirm_password.value) {
+        confirm_password.setCustomValidity("Passwords Don't Match");
+      } else {
+        confirm_password.setCustomValidity('');
+      }
+    }
 
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+  </script>
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
