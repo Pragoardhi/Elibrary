@@ -32,12 +32,29 @@
 
       <div class="container" id="marketing">
         <div class="row">
-          <div class="col-lg-4" id="kolom">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-            <h2>Nama</h2>
+       
+          
+
+            <?php
+                $count  = count($listUser);
+
+                for($i = 0; $i < $count; $i++){
+                 echo '<div class="col-lg-4" id="kolom">';
+                 echo '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' ;
+                 echo '<title>Placeholder</title>' ;
+                 echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
+                 echo '</svg>' ;
+                    
+                   
+                    echo '<br>';
+                    echo '<br>';
+                    echo '<h5>' . $listUser[$i]["id"] . '</h5>';
+                    echo '<p>'. $listUser[$i]["username"] . '</p>';
+                    echo '</div>';
+
+                }
+            ?>
+           <!-- <h2>Nama</h2>
             <p>NIP/NRP</p>
             <p>Pangkat</p>
           </div>
@@ -58,8 +75,8 @@
             <h2>Nama</h2>
             <p>NIP/NRP</p>
             <p>Pangkat</p>
-          </div>
-        </div>
+          </div>-->
+       <!-- </div> -->
       </div>
     </div>
 

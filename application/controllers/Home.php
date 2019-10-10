@@ -5,6 +5,8 @@ class Home extends CI_Controller
 {
     public function index()
     {
-        $this->load->view('navbar/home_page');
+        $this->load->model('katalog_buku');
+        $data['listBook'] = $this->katalog_buku->getBook();
+        $this->load->view('navbar/home_page', $data);
     }
 }
