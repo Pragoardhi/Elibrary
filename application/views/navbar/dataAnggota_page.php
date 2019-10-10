@@ -24,17 +24,14 @@
       </div>
 
       <div class="input-group" style="margin: 10px 0px 10px 0px">
-        <input type="text" class="form-control" placeholder="Nama, NIP atau NRP" id="inputSearch">
+        <input type="text" class="form-control" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
         <div class="input-group-append">
-          <button class="btn btn-dark" type="button" id="button-addon2">Cari</button>
+          <button class="btn btn-dark" type="button" id="button-addon2" name="cari">Cari</button>
         </div>
       </div>
 
       <div class="container" id="marketing">
         <div class="row">
-       
-          
-
             <?php
                 $count  = count($listUser);
 
@@ -79,6 +76,9 @@
        <!-- </div> -->
       </div>
     </div>
+    </div>
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
