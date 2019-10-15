@@ -61,11 +61,24 @@ class Admin extends CI_Controller
         $tambahusername = $this->input->post('tambahusername');
         $tambahemail = $this->input->post('tambahemail');
         $tambahpassword = $this->input->post('tambahpassword');
-        if ($this->input->post('tambahstatus') == "User") {
-            $tambahstatus = -1;
+        $datacheck = $this->admin_model->getUser();
+        $count = count($datacheck);
+        for ($i = 0; $i < $count; $i++) {
+            if ($datacheck[$i]["username"] == $tambahusername || $datacheck[$i]["email"] == $tambahemail) {
+                $datasama = true;
+            }
         }
-        $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword);
-        redirect(base_url('Admin/Daftarpengguna'));
+        if ($datasama) {
+            $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
+            redirect(base_url('Admin/Daftarpengguna'));
+        } else {
+            if ($this->input->post('tambahstatus') == "User") {
+                $tambahstatus = -1;
+            }
+            $this->session->set_flashdata('databerhasil', "data berhasil ditambahkan");
+            $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword);
+            redirect(base_url('Admin/Daftarpengguna'));
+        }
     }
     public function Addbuku()
     {
@@ -74,16 +87,41 @@ class Admin extends CI_Controller
         $tambahpenulis = $this->input->post('tambahpenulis');
         $tambahpenerbit = $this->input->post('tambahpenerbit');
         $tambahisbn = $this->input->post('tambahisbn');
+        $tambahharga = $this->input->post('tambahharga');
         $tambahketerangan = $this->input->post('tambahketerangan');
-        $tambahgambar = $this->input->post('tambahgambar');
+
+        //dapetin last increment di table dbo.book
+        $databuku = $this->db->query("SELECT IDENT_CURRENT('[dbo].[Book]')")->result_array();
+
+        // echo $_FILES['tambahgambar']['name'];
+        $config['upload_path']          = './upload/book/';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['file_name']            = $databuku[0][""] + 1;;
+        $config['overwrite']            = true;
+        $config['max_size']             = 1024; // 1MB
+
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload('tambahgambar')) {
+            $tambahgambar = $this->upload->data("file_name");
+        } else {
+            $tambahgambar = "default.jpg";
+        }
         $tambahtahun = $this->input->post('tambahtahun');
-        echo $tambahgambar;
-        // redirect(base_url('Admin/Daftarbuku'));
+        $this->admin_model->addBuku($tambahjudul, $tambahtipe, $tambahpenulis, $tambahpenerbit, $tambahisbn, $tambahharga, $tambahketerangan, $tambahgambar, $tambahtahun);
+        redirect(base_url('Admin/Daftarbuku'));
     }
     public function Deleteuser()
     {
         $id = $this->uri->segment(3);
         $this->admin_model->Deleteuser($id);
         redirect(base_url('Admin/Daftarpengguna'));
+    }
+    public function Deletebuku()
+    {
+        $id = $this->uri->segment(3);
+        $this->admin_model->Deletebuku($id);
+        redirect(base_url('Admin/Daftarbuku'));
     }
 }

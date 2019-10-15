@@ -256,7 +256,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Addbuku') ?>">
+                    <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Addbuku') ?>" enctype="multipart/form-data">
                         <fieldset>
                             <div class="form-group">
                                 <span></span>
@@ -299,7 +299,7 @@
                             <div class="form-group">
                                 <label class="control-label">Harga</label>
                                 <div class="inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahharga" name="tambahisbn" placeholder="Harga" class="form-control" required="true" value="" type="number"></div>
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahharga" name="tambahharga" placeholder="Harga" class="form-control" required="true" value="" type="number"></div>
                                 </div>
                             </div>
                             <div class="form-group">

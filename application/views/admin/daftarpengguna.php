@@ -46,7 +46,35 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-
+          <!-- alert -->
+          <?php if ($this->session->flashdata('dataada') == TRUE) { ?>
+            <div role="alert" id="alert" class="alert alert-danger alert-dismissible" style="text-align:center">
+              <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true" class="fa fa-times"></span>
+              </button>
+              <p><?php echo $this->session->flashdata('dataada') ?></p>
+            </div>
+            <script>
+              window.setTimeout(function() {
+                $("#alert").fadeTo(500, 0).slideUp(500, function() {
+                  $(this).remove();
+                });
+              }, 3000);
+            </script>
+          <?php }
+          if ($this->session->flashdata('databerhasil') == TRUE) { ?>
+            <div role="alert" id="alert" class="alert alert-danger alert-dismissible" style="text-align:center">
+              <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true" class="fa fa-times"></span>
+              </button>
+              <p><?php echo $this->session->flashdata('dataada') ?></p>
+            </div>
+            <script>
+              window.setTimeout(function() {
+                $("#alert").fadeTo(500, 0).slideUp(500, function() {
+                  $(this).remove();
+                });
+              }, 3000);
+            </script>
+          <?php } ?>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
@@ -287,6 +315,7 @@
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
   </script>
+
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

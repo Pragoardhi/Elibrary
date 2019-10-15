@@ -23,8 +23,28 @@ class admin_model extends CI_Model
     {
         $this->db->query("DELETE FROM [dbo].[User] WHERE id='$id'");
     }
+    public function deleteBuku($id)
+    {
+        $this->deleteImage($id);
+        $this->db->query("DELETE FROM [dbo].[Book] WHERE id='$id'");
+    }
     public function addUser($addusername, $addemail, $addstatus, $addpassword)
     {
         $this->db->query("INSERT INTO [dbo].[User](email,pass,status,username) VALUES ('$addemail','$addpassword','$addstatus','$addusername')");
+    }
+    public function addBuku($judul, $tipe, $penulis, $penerbit, $isbn, $harga, $keterangan, $image, $year)
+    {
+        $this->db->query("INSERT INTO [dbo].[Book](Judul,Tipe,Penulis,Penerbit,ISBN,Harga,Keterangan,Image,Year) VALUES ('$judul','$tipe','$penulis','$penerbit','$isbn','$harga','$keterangan','$image','$year')");
+    }
+    private function deleteImage($id)
+    {
+        $data = $this->db->query("SELECT * FROM [dbo].[Book] WHERE ID='$id'");
+        $select = $data->result_array();
+
+        if ($select[0]["Image"] != "default.jpg") {
+            $filename = explode(".", $select[0]["Image"])[0];
+            echo $filename;
+            return array_map('unlink', glob(FCPATH . "upload/book/$filename.*"));
+        }
     }
 }
