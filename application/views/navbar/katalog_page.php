@@ -27,9 +27,9 @@
         <br>
 
     <div class="input-group" style="margin: 10px 0px 10px 0px">
-    <form method="post">
-        <input type="text" class="form-control" name="keyword" placeholder="Judul, Penulis atau Tahun" id="inputSearch">
-        <input type="submit" name="select" btn-dark>
+    <form method="post" class="form-inline mt-2 mt-md-0">
+        <input type="text" class="form-control mr-sm-2" name="keyword" placeholder="Judul, Penulis atau Tahun" id="inputSearch">
+        <button type="submit" name="select"  value="select" class="btn btn-dark my-2 my-sm-0">Cari</button>
     </form>
     </div>
     <br>
@@ -37,14 +37,10 @@
         <div class="row">
             <?php
                 $count  = count($listBook);
-                echo '<script>console.log("test1")</script>';
-
-                function cari($val){
-
-                }
-
-            if(isset($_POST['select']) && $_POST['keyword'] == NULL){
+            
+            if(isset($_POST['select']) && $_POST['keyword'] !== NULL){
                 for($i = 0; $i < $count; $i++) {
+                    if($listBook[$i]["Judul"] == $_POST['keyword'] ||  $listBook[$i]["Penulis"] == $_POST['keyword']  || $listBook[$i]["Year"] == $_POST['keyword']){
                     echo '<div class="col-lg-3" style="text-align: center">';
                     ?>
                     <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
@@ -55,12 +51,12 @@
                     echo '<p>'  . $listBook[$i]["Penulis"]  . '</p>';
                     echo '<p>'  . $listBook[$i]["Year"]     . '</p>';
                     echo '</div>';
+                    }
                 }
             }
 
-            else if(isset($_POST['select']) && $_POST['keyword'] != NULL){
+            else{
                 for($i = 0; $i < $count; $i++) {
-                    if($listBook[$i]["Judul"] == $_POST['keyword'] ||  $listBook[$i]["Penulis"] == $_POST['keyword']  || $listBook[$i]["Year"] == $_POST['keyword']){
                     echo '<div class="col-lg-3" style="text-align: center">';
                     ?>
                     <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
@@ -71,8 +67,7 @@
                     echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
                     echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
                     echo '</div>';
-                    }  
-                }              
+                    }                
             }
             ?>
         </div>
