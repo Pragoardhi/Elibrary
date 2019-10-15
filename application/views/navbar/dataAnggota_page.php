@@ -74,6 +74,7 @@
                       echo '<p>'. $listUser[$i]["username"] . '</p>';
                       echo '</div>';
                   }
+                }
             ?>
       </div>
     </div>
