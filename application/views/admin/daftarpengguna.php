@@ -87,6 +87,7 @@
                   <thead>
                     <tr>
                       <th>No</th>
+                      <th>Image</th>
                       <th>Username</th>
                       <th>Email</th>
                       <th>Status</th>
@@ -96,6 +97,7 @@
                   <tfoot>
                     <tr>
                       <th>No</th>
+                      <th>Image</th>
                       <th>Username</th>
                       <th>Email</th>
                       <th>Status</th>
@@ -109,14 +111,19 @@
                       $number = $i + 1;
                       echo '<tr>';
                       echo '<td>' . $number . '</td>';
-                      echo '<td>' . $listuser[$i]["username"] . '</td>';
-                      echo '<td>' . $listuser[$i]["email"] . '</td>';
-                      if ($listuser[$i]["status"] == "1") {
-                        echo '<td> Admin </td>';
-                      } else {
-                        echo '<td> User </td>';
-                      }
                       ?>
+                      <td>
+                        <img src="<?php echo base_url('upload/user/' . $listuser[$i]["image"]) ?>" width="64" />
+                      </td>
+                      <?php
+                        echo '<td>' . $listuser[$i]["username"] . '</td>';
+                        echo '<td>' . $listuser[$i]["email"] . '</td>';
+                        if ($listuser[$i]["status"] == "1") {
+                          echo '<td> Admin </td>';
+                        } else {
+                          echo '<td> User </td>';
+                        }
+                        ?>
                       <td>
                         <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
                         <?php
@@ -157,6 +164,16 @@
                                     <label class="ontrol-label">Email</label>
                                     <div class="inputGroupContainer">
                                       <div class="input-group"><span class="input-group-addon"></span><input id="editemail" name="editemail" placeholder="Email" class="form-control" required="true" value="" type="email"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="ontrol-label">Status</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editstatus" name="editstatus" placeholder="Status" class="form-control" required="true" value="<?php if ($listuser[$i]["status"] == "1") {
+                                                                                                                                                                                                                    echo "Admin";
+                                                                                                                                                                                                                  } else {
+                                                                                                                                                                                                                    echo "User";
+                                                                                                                                                                                                                  } ?>" readonly="readonly"></div>
                                     </div>
                                   </div>
                                 </fieldset>
@@ -232,7 +249,7 @@
           </button>
         </div>
         <div class="modal-body">
-          <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Adduser') ?>">
+          <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Adduser') ?>" enctype="multipart/form-data">
             <fieldset>
               <div class="form-group">
                 <span></span>
@@ -270,6 +287,12 @@
                 <label class="control-label">Confirm Password</label>
                 <div class="inputGroupContainer">
                   <div class="input-group"><span class="input-group-addon"></span><input id="confirmtambahpassword" name="confirmtambahpassword" placeholder="Confirm Password" class="form-control" required="true" value="" type="password"></div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label class="control-label">Foto Profile</label>
+                <div class="inputGroupContainer">
+                  <div class="input-group"><span class="input-group-addon"></span><input id="tambahprofile" name="tambahprofile" placeholder="Profile" class="form-control-file" required="true" value="" type="file"></div>
                 </div>
               </div>
             </fieldset>

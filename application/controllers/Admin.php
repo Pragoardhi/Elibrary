@@ -48,8 +48,21 @@ class Admin extends CI_Controller
         $editusername = $this->input->post('editusername');
         $editemail = $this->input->post('editemail');
 
-        $this->admin_model->saveEditUser($editid, $editusername, $editemail);
-        redirect(base_url('Admin/Daftarpengguna'));
+        $datacheck = ($this->db->query("SELECT * FROM [dbo].[User] WHERE NOT id='$editid'"))->result_array();
+        $count = count($datacheck);
+        for ($i = 0; $i < $count; $i++) {
+            if ($datacheck[$i]["username"] == $editusername || $datacheck[$i]["email"] == $editemail) {
+                $datasama = true;
+            }
+        }
+        if ($datasama) {
+            $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
+            redirect(base_url('Admin/Daftarpengguna'));
+        } else {
+            $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
+            $this->admin_model->saveEditUser($editid, $editusername, $editemail);
+            redirect(base_url('Admin/Daftarpengguna'));
+        }
     }
     public function SaveeditBuku()
     {
@@ -72,11 +85,29 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
             redirect(base_url('Admin/Daftarpengguna'));
         } else {
+            $datauser = $this->db->query("SELECT IDENT_CURRENT('[dbo].[User]')")->result_array();
+
+            // echo $_FILES['tambahgambar']['name'];
+            $config['upload_path']          = './upload/user/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['file_name']            = $datauser[0][""] + 1;
+            $config['overwrite']            = true;
+            $config['max_size']             = 1024; // 1MB
+
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('tambahprofile')) {
+                $tambahprofile = $this->upload->data("file_name");
+            } else {
+                $tambahprofile = "default.jpg";
+            }
+
             if ($this->input->post('tambahstatus') == "User") {
                 $tambahstatus = -1;
             }
-            $this->session->set_flashdata('databerhasil', "data berhasil ditambahkan");
-            $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword);
+            $this->session->set_flashdata('databerhasil', "data telah berhasil ditambahkan");
+            $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword, $tambahprofile);
             redirect(base_url('Admin/Daftarpengguna'));
         }
     }

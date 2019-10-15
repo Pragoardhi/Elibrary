@@ -28,9 +28,9 @@ class admin_model extends CI_Model
         $this->deleteImage($id);
         $this->db->query("DELETE FROM [dbo].[Book] WHERE id='$id'");
     }
-    public function addUser($addusername, $addemail, $addstatus, $addpassword)
+    public function addUser($addusername, $addemail, $addstatus, $addpassword, $profile)
     {
-        $this->db->query("INSERT INTO [dbo].[User](email,pass,status,username) VALUES ('$addemail','$addpassword','$addstatus','$addusername')");
+        $this->db->query("INSERT INTO [dbo].[User](email,pass,status,username,image) VALUES ('$addemail','$addpassword','$addstatus','$addusername','$profile')");
     }
     public function addBuku($judul, $tipe, $penulis, $penerbit, $isbn, $harga, $keterangan, $image, $year)
     {
