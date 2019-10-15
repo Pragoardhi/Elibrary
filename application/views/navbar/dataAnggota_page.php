@@ -67,15 +67,13 @@
                     echo '<title>Placeholder</title>' ;
                     echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
                     echo '</svg>' ;
-                          
-                        
+    
                       echo '<br>';
                       echo '<br>';
                       echo '<h5>' . $listUser[$i]["id"] . '</h5>';
                       echo '<p>'. $listUser[$i]["username"] . '</p>';
                       echo '</div>';
                   }
-                }   
             ?>
       </div>
     </div>

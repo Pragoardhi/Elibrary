@@ -63,7 +63,9 @@
 
             for ($i = $count - 3; $i < $count; $i++) {
                 echo '<div class="col-lg-4" style="text-align: center">';
-                echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
+                ?>
+                <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
+                <?php
                 echo '<br>';
                 echo '<br>';
                 echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';

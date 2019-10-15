@@ -25,31 +25,55 @@
             <h1>Katalog Buku</h1>
         </div>
         <br>
-        <div class="input-group" style="margin: 10px 0px 40px 0px">
-            <select class="form-control">
-                <option selected>Type..</option>
-                <option>Judul</option>
-                <option>Author</option>
-                <option>Year</option>
-            </select>
-            <div class="input-group-append">
-                <button class="btn btn-dark" type="button" id="button-addon2">Cari</button>
-            </div>
-        </div>
+
+    <div class="input-group" style="margin: 10px 0px 10px 0px">
+    <form method="post">
+        <input type="text" class="form-control" name="keyword" placeholder="Judul, Penulis atau Tahun" id="inputSearch">
+        <input type="submit" name="select" btn-dark>
+    </form>
+    </div>
+    <br>
+
         <div class="row">
             <?php
                 $count  = count($listBook);
+                echo '<script>console.log("test1")</script>';
 
+                function cari($val){
+
+                }
+
+            if(isset($_POST['select']) && $_POST['keyword'] == NULL){
                 for($i = 0; $i < $count; $i++) {
                     echo '<div class="col-lg-3" style="text-align: center">';
-                    echo '<img class="w-50" src="' . $listBook[$i]["Image"] . '"/>';
+                    ?>
+                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
+                    <?php
                     echo '<br>';
                     echo '<br>';
-                    echo '<h5>' . $listBook[$i]["Judul"] . '</h5>';
-                    echo '<p>'. $listBook[$i]["Penulis"] . '</p>';
-                    echo '<p>'. $listBook[$i]["Year"] . '</p>';
+                    echo '<h5>' . $listBook[$i]["Judul"]    . '</h5>';
+                    echo '<p>'  . $listBook[$i]["Penulis"]  . '</p>';
+                    echo '<p>'  . $listBook[$i]["Year"]     . '</p>';
                     echo '</div>';
                 }
+            }
+
+            else if(isset($_POST['select']) && $_POST['keyword'] != NULL){
+                for($i = 0; $i < $count; $i++) {
+                    if($listBook[$i]["Judul"] == $_POST['keyword'] ||  $listBook[$i]["Penulis"] == $_POST['keyword']  || $listBook[$i]["Year"] == $_POST['keyword']){
+                    echo '<div class="col-lg-3" style="text-align: center">';
+                    ?>
+                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
+                    <?php
+                    echo '<br>';
+                    echo '<br>';
+                    echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';
+                    echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
+                    echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
+                    echo '</div>';
+                    }  
+                }              
+            }
             ?>
         </div>
     </div>
