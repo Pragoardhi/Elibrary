@@ -47,7 +47,35 @@
 
                     <!-- Page Heading -->
 
-
+                    <!-- alert -->
+                    <?php if ($this->session->flashdata('databukuada') == TRUE) { ?>
+                        <div role="alert" id="alert" class="alert alert-danger alert-dismissible" style="text-align:center">
+                            <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true" class="fa fa-times"></span>
+                            </button>
+                            <p><?php echo $this->session->flashdata('databukuada') ?></p>
+                        </div>
+                        <script>
+                            window.setTimeout(function() {
+                                $("#alert").fadeTo(500, 0).slideUp(500, function() {
+                                    $(this).remove();
+                                });
+                            }, 3000);
+                        </script>
+                    <?php }
+                    if ($this->session->flashdata('databukuberhasil') == TRUE) { ?>
+                        <div role="alert" id="alert" class="alert alert-success alert-dismissible" style="text-align:center">
+                            <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true" class="fa fa-times"></span>
+                            </button>
+                            <p><?php echo $this->session->flashdata('databukuberhasil') ?></p>
+                        </div>
+                        <script>
+                            window.setTimeout(function() {
+                                $("#alert").fadeTo(500, 0).slideUp(500, function() {
+                                    $(this).remove();
+                                });
+                            }, 3000);
+                        </script>
+                    <?php } ?>
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">

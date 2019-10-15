@@ -62,10 +62,10 @@
             </script>
           <?php }
           if ($this->session->flashdata('databerhasil') == TRUE) { ?>
-            <div role="alert" id="alert" class="alert alert-danger alert-dismissible" style="text-align:center">
+            <div role="alert" id="alert" class="alert alert-success alert-dismissible" style="text-align:center">
               <button aria-label="Close" data-dismiss="alert" class="close" type="button"><span aria-hidden="true" class="fa fa-times"></span>
               </button>
-              <p><?php echo $this->session->flashdata('dataada') ?></p>
+              <p><?php echo $this->session->flashdata('databerhasil') ?></p>
             </div>
             <script>
               window.setTimeout(function() {
