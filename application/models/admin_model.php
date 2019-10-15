@@ -21,6 +21,7 @@ class admin_model extends CI_Model
     }
     public function deleteUser($id)
     {
+        $this->deleteImageuser($id);
         $this->db->query("DELETE FROM [dbo].[User] WHERE id='$id'");
     }
     public function deleteBuku($id)
@@ -45,6 +46,17 @@ class admin_model extends CI_Model
             $filename = explode(".", $select[0]["Image"])[0];
             echo $filename;
             return array_map('unlink', glob(FCPATH . "upload/book/$filename.*"));
+        }
+    }
+    private function deleteImageuser($id)
+    {
+        $data = $this->db->query("SELECT * FROM [dbo].[User] WHERE id='$id'");
+        $select = $data->result_array();
+
+        if ($select[0]["image"] != "default.jpg") {
+            $filename = explode(".", $select[0]["image"])[0];
+            echo $filename;
+            return array_map('unlink', glob(FCPATH . "upload/user/$filename.*"));
         }
     }
 }
