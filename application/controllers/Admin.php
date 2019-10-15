@@ -110,7 +110,7 @@ class Admin extends CI_Controller
             // echo $_FILES['tambahgambar']['name'];
             $config['upload_path']          = './upload/book/';
             $config['allowed_types']        = 'gif|jpg|png';
-            $config['file_name']            = $databuku[0][""] + 1;;
+            $config['file_name']            = $databuku[0][""] + 1;
             $config['overwrite']            = true;
             $config['max_size']             = 1024; // 1MB
 
