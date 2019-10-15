@@ -129,9 +129,14 @@
                                             echo '<td>' . $listbuku[$i]["ISBN"] . '</td>';
                                             echo '<td>' . $listbuku[$i]["Harga"] . '</td>';
                                             echo '<td>' . $listbuku[$i]["Keterangan"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Image"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Year"] . '</td>';
                                             ?>
+                                            <td>
+                                                <img src="<?php echo base_url('upload/book/' . $listbuku[$i]["Image"]) ?>" width="64" />
+                                            </td>
+                                            <?php
+                                                echo '<td>' . $listbuku[$i]["Year"] . '</td>';
+                                                ?>
+
                                             <td>
                                                 <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
                                                 <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $i; ?>"><i class="fas fa-trash"></i></button>
