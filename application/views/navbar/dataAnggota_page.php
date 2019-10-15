@@ -25,59 +25,65 @@
       </div>
       <br>
       <div class="input-group" style="margin: 10px 0px 10px 0px">
+        
+        
+        <form method="post">
         <input type="text" class="form-control" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
-        <div class="input-group-append">
-          <button class="btn btn-dark" type="button" id="button-addon2" name="cari">Cari</button>
-        </div>
+          
+          <input type="submit" name="select" value="select" >
+        </form>
       </div>
 
       <div class="container" id="marketing">
         <div class="row">
             <?php
                 $count  = count($listUser);
+                echo '<script>console.log("ini0")</script>';
 
-                for($i = 0; $i < $count; $i++){
-                 echo '<div class="col-lg-4" id="kolom">';
-                 echo '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' ;
-                 echo '<title>Placeholder</title>' ;
-                 echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
-                 echo '</svg>' ;
-                    
-                   
-                    echo '<br>';
-                    echo '<br>';
-                    echo '<h5>' . $listUser[$i]["id"] . '</h5>';
-                    echo '<p>'. $listUser[$i]["username"] . '</p>';
-                    echo '</div>';
-
+                function cari($val){
+                  
                 }
+
+                if(isset($_POST['select']) && $_POST['keyword'] == NULL){
+                  for($i = 0; $i < $count; $i++){
+                    echo '<div class="col-lg-4" id="kolom">';
+                    echo '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' ;
+                    echo '<title>Placeholder</title>' ;
+                    echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
+                    echo '</svg>' ;
+                          
+                        
+                      echo '<br>';
+                      echo '<br>';
+                      echo '<h5>' . $listUser[$i]["id"] . '</h5>';
+                      echo '<p>'. $listUser[$i]["username"] . '</p>';
+                      echo '</div>';
+                  }
+                } 
+                
+                else if(isset($_POST['select']) && $_POST['keyword'] != NULL){
+                  for($i = 0; $i < $count; $i++){
+                    if($listUser[$i]["username"] == $_POST['keyword']){
+                    echo '<div class="col-lg-4" id="kolom">';
+                    echo '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' ;
+                    echo '<title>Placeholder</title>' ;
+                    echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
+                    echo '</svg>' ;
+                          
+                      echo $i;
+                      echo '<br>';
+                      echo '<br>';
+                      echo '<h5>' . $listUser[$i]["id"] . '</h5>';
+                      echo '<p>'. $listUser[$i]["username"] . '</p>';
+                      echo '</div>';
+                    } 
+                  }
+                }    
+                $_POST['keyword'] == NULL; 
             ?>
-           <!-- <h2>Nama</h2>
-            <p>NIP/NRP</p>
-            <p>Pangkat</p>
-          </div>
-          <div class="col-lg-4" id="kolom">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-            <h2>Nama</h2>
-            <p>NIP/NRP</p>
-            <p>Pangkat</p>
-          </div>
-          <div class="col-lg-4" id="kolom">
-            <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">
-              <title>Placeholder</title>
-              <rect width="100%" height="100%" fill="#777"></rect>
-            </svg>
-            <h2>Nama</h2>
-            <p>NIP/NRP</p>
-            <p>Pangkat</p>
-          </div>-->
-       <!-- </div> -->
       </div>
     </div>
-    </div>
+  </div>
 
 
 
