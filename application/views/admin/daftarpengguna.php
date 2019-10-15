@@ -144,7 +144,7 @@
                               </button>
                             </div>
                             <div class="modal-body">
-                              <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Saveedit') ?>">
+                              <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Saveedit') ?>" enctype="multipart/form-data">
                                 <fieldset>
                                   <div class="form-group">
                                     <span></span>
@@ -174,6 +174,12 @@
                                                                                                                                                                                                                   } else {
                                                                                                                                                                                                                     echo "User";
                                                                                                                                                                                                                   } ?>" readonly="readonly"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Foto Profile</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editprofile" name="editprofile" placeholder="Profile" class="form-control-file" required="true" value="" type="file"></div>
                                     </div>
                                   </div>
                                 </fieldset>

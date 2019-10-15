@@ -59,8 +59,21 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
             redirect(base_url('Admin/Daftarpengguna'));
         } else {
+            $config['upload_path']          = './upload/user/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['file_name']            = $editid;
+            $config['overwrite']            = true;
+            $config['max_size']             = 1024; // 1MB
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('editprofile')) {
+                $editprofile = $this->upload->data("file_name");
+            } else {
+                $editprofile = "default.jpg";
+            }
             $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
-            $this->admin_model->saveEditUser($editid, $editusername, $editemail);
+            $this->admin_model->saveEditUser($editid, $editusername, $editemail, $editprofile);
             redirect(base_url('Admin/Daftarpengguna'));
         }
     }
@@ -86,7 +99,6 @@ class Admin extends CI_Controller
             redirect(base_url('Admin/Daftarpengguna'));
         } else {
             $datauser = $this->db->query("SELECT IDENT_CURRENT('[dbo].[User]')")->result_array();
-
             // echo $_FILES['tambahgambar']['name'];
             $config['upload_path']          = './upload/user/';
             $config['allowed_types']        = 'gif|jpg|png';
