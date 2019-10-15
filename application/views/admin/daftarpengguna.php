@@ -298,6 +298,7 @@
               <div class="form-group">
                 <label class="control-label">Foto Profile</label>
                 <div class="inputGroupContainer">
+                  <img class="img-thumbnail" id="imagetambah" />
                   <div class="input-group"><span class="input-group-addon"></span><input id="tambahprofile" name="tambahprofile" placeholder="Profile" class="form-control-file" required="true" value="" type="file"></div>
                 </div>
               </div>
@@ -343,6 +344,19 @@
 
     password.onchange = validatePassword;
     confirm_password.onkeyup = validatePassword;
+  </script>
+  <script>
+    document.getElementById("tambahprofile").onchange = function() {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        // get loaded data and render thumbnail.
+        document.getElementById("imagetambah").src = e.target.result;
+      };
+
+      // read the image file as a data URL.
+      reader.readAsDataURL(this.files[0]);
+    }
   </script>
 
   <!-- Bootstrap core JavaScript-->
