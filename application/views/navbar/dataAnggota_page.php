@@ -70,7 +70,7 @@
                     echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
                     echo '</svg>' ;
                           
-                      echo $i;
+                   
                       echo '<br>';
                       echo '<br>';
                       echo '<h5>' . $listUser[$i]["id"] . '</h5>';
@@ -79,7 +79,6 @@
                     } 
                   }
                 }    
-                $_POST['keyword'] == NULL; 
             ?>
       </div>
     </div>
