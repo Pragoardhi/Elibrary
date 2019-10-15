@@ -41,7 +41,7 @@
 
                 if(isset($_POST['select']) && $_POST['keyword'] != NULL){
                   for($i = 0; $i < $count; $i++){
-                    if($listUser[$i]["username"] == $_POST['keyword']){
+                    if($listUser[$i]["username"] == $_POST['keyword'] || $listUser[$i]["id"] == $_POST['keyword']){
                     echo '<div class="col-lg-4" id="kolom">';
                     ?>
                     <img class="w-50" src="<?php echo base_url('upload/user/' . $listUser[$i]["image"]) ?>"/>
