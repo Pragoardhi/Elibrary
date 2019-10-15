@@ -38,7 +38,7 @@
             <?php
                 $count  = count($listBook);
             
-            if(isset($_POST['select']) && $_POST['keyword'] !== NULL){
+            if(isset($_POST['select']) && $_POST['keyword'] != NULL){
                 for($i = 0; $i < $count; $i++) {
                     if($listBook[$i]["Judul"] == $_POST['keyword'] ||  $listBook[$i]["Penulis"] == $_POST['keyword']  || $listBook[$i]["Year"] == $_POST['keyword']){
                     echo '<div class="col-lg-3" style="text-align: center">';
