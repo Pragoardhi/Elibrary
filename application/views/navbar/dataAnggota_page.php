@@ -27,10 +27,9 @@
       <div class="input-group" style="margin: 10px 0px 10px 0px">
         
         
-        <form method="post">
-        <input type="text" class="form-control" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
-          
-          <input type="submit" name="select" value="select" >
+        <form method="post" class="form-inline mt-2 mt-md-0">
+          <input type="text" class="form-control mr-sm-2" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
+          <button type="submit" name="select" value="select" class="btn btn-dark my-2 my-sm-0">Cari</button>
         </form>
       </div>
 
@@ -40,37 +39,17 @@
                 $count  = count($listUser);
                 echo '<script>console.log("ini0")</script>';
 
-                function cari($val){
-                  
-                }
-
-                if(isset($_POST['select']) && $_POST['keyword'] == NULL){
-                  for($i = 0; $i < $count; $i++){
-                    echo '<div class="col-lg-4" id="kolom">';
-                    echo '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' ;
-                    echo '<title>Placeholder</title>' ;
-                    echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
-                    echo '</svg>' ;
-                          
-                        
-                      echo '<br>';
-                      echo '<br>';
-                      echo '<h5>' . $listUser[$i]["id"] . '</h5>';
-                      echo '<p>'. $listUser[$i]["username"] . '</p>';
-                      echo '</div>';
-                  }
-                } 
-                
-                else if(isset($_POST['select']) && $_POST['keyword'] != NULL){
+                if(isset($_POST['select']) && $_POST['keyword'] != NULL){
                   for($i = 0; $i < $count; $i++){
                     if($listUser[$i]["username"] == $_POST['keyword']){
                     echo '<div class="col-lg-4" id="kolom">';
-                    echo '<svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 140x140">' ;
+                    ?>
+                    <img class="w-50" src="<?php echo base_url('upload/user/' . $listUser[$i]["image"]) ?>"/>
+                    <?php
                     echo '<title>Placeholder</title>' ;
                     echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
                     echo '</svg>' ;
-                          
-                      echo $i;
+                        
                       echo '<br>';
                       echo '<br>';
                       echo '<h5>' . $listUser[$i]["id"] . '</h5>';
@@ -78,8 +57,24 @@
                       echo '</div>';
                     } 
                   }
-                }    
-                $_POST['keyword'] == NULL; 
+                }
+                else{
+                  for($i = 0; $i < $count; $i++){
+                    echo '<div class="col-lg-4" id="kolom">';
+                    ?>
+                    <img class="w-50" src="<?php echo base_url('upload/user/' . $listUser[$i]["image"]) ?>"/>
+                    <?php
+                    echo '<title>Placeholder</title>' ;
+                    echo '<rect width="100%" height="100%" fill="#777"></rect>' ;
+                    echo '</svg>' ;
+    
+                      echo '<br>';
+                      echo '<br>';
+                      echo '<h5>' . $listUser[$i]["id"] . '</h5>';
+                      echo '<p>'. $listUser[$i]["username"] . '</p>';
+                      echo '</div>';
+                  }
+                }
             ?>
       </div>
     </div>
