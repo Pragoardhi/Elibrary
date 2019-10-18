@@ -28,8 +28,8 @@
         
         
         <form method="post" class="form-inline mt-2 mt-md-0">
-          <input type="text" class="form-control mr-sm-2" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
-          <button type="submit" name="select" value="select" class="btn btn-dark my-2 my-sm-0">Cari</button>
+          <input type="text" class="form-control mr-sm-0" name="keyword" placeholder="Nama, NIP atau NRP" id="inputSearch">
+          <button type="submit" name="select" value="select" class="btn btn-dark my-0 my-sm-0">Cari</button>
         </form>
       </div>
 
@@ -70,8 +70,9 @@
     
                       echo '<br>';
                       echo '<br>';
-                      echo '<h5>' . $listUser[$i]["id"] . '</h5>';
-                      echo '<p>'. $listUser[$i]["username"] . '</p>';
+                      $urutan = $i+1;
+                      echo '<h5>' . $urutan . '</h5>';
+                      echo '<p>Nama : ' . $listUser[$i]["username"] . '</p>';
                       echo '</div>';
                   }
                 }

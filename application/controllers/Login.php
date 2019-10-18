@@ -10,7 +10,7 @@ class Login extends CI_Controller
     }
     public function index()
     {
-        if ($this->session->userdata('statusadmin') == "login") {
+        if ($this->session->userdata('statusadmin') == "login" || $this->session->userdata('statususer') == "login") {
             $this->session->sess_destroy();
             redirect(base_url('Login'));
         }
@@ -30,7 +30,12 @@ class Login extends CI_Controller
             $this->session->set_userdata($data_session);
             redirect(base_url('Admin'));
         } else if ($check == -1) {
-            echo "user";
+            $data_session = array(
+                'statususer' => 'login',
+                'username' => $username
+            );
+            $this->session->set_userdata($data_session);
+            redirect(base_url('Home'));
         } else {
             echo "Username dan password salah !";
             die();

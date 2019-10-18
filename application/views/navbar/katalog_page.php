@@ -28,28 +28,28 @@
 
     <div class="input-group" style="margin: 10px 0px 10px 0px">
     <form method="post" class="form-inline mt-2 mt-md-0">
-        <input type="text" class="form-control mr-sm-2" name="keyword" placeholder="Judul, Penulis atau Tahun" id="inputSearch">
-        <button type="submit" name="select"  value="select" class="btn btn-dark my-2 my-sm-0">Cari</button>
+        <input type="text" class="form-control mr-sm-0" name="keyword" placeholder="Judul, Penulis atau Tahun" id="inputSearch">
+        <button type="submit" name="select"  value="select" class="btn btn-dark my-0 my-sm-0">Cari</button>
     </form>
     </div>
     <br>
 
         <div class="row">
             <?php
-                $count  = count($listBook);
+                $count  = count($listBooks);
             
             if(isset($_POST['select']) && $_POST['keyword'] != NULL){
                 for($i = 0; $i < $count; $i++) {
-                    if($listBook[$i]["Judul"] == $_POST['keyword'] ||  $listBook[$i]["Penulis"] == $_POST['keyword']  || $listBook[$i]["Year"] == $_POST['keyword']){
+                    if($listBooks[$i]["Judul"] == $_POST['keyword'] ||  $listBooks[$i]["Penulis"] == $_POST['keyword']  || $listBooks[$i]["Year"] == $_POST['keyword']){
                     echo '<div class="col-lg-3" style="text-align: center">';
                     ?>
-                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
+                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBooks[$i]["Image"]) ?>"/>
                     <?php
                     echo '<br>';
                     echo '<br>';
-                    echo '<h5>' . $listBook[$i]["Judul"]    . '</h5>';
-                    echo '<p>'  . $listBook[$i]["Penulis"]  . '</p>';
-                    echo '<p>'  . $listBook[$i]["Year"]     . '</p>';
+                    echo '<h5>' . $listBooks[$i]["Judul"]    . '</h5>';
+                    echo '<p>'  . $listBooks[$i]["Penulis"]  . '</p>';
+                    echo '<p>'  . $listBooks[$i]["Year"]     . '</p>';
                     echo '</div>';
                     }
                 }
@@ -59,13 +59,13 @@
                 for($i = 0; $i < $count; $i++) {
                     echo '<div class="col-lg-3" style="text-align: center">';
                     ?>
-                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>"/>
+                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBooks[$i]["Image"]) ?>"/>
                     <?php
                     echo '<br>';
                     echo '<br>';
-                    echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';
-                    echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
-                    echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
+                    echo '<h5>' . $listBooks[$i]["Judul"]   . '</h5>';
+                    echo '<p>'  . $listBooks[$i]["Penulis"] . '</p>';
+                    echo '<p>'  . $listBooks[$i]["Year"]    . '</p>';
                     echo '</div>';
                     }                
             }

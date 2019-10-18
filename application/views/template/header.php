@@ -5,15 +5,20 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav ml-auto" id="navbarNav">
-            <a class="nav-item nav-link" href="<?php echo base_url() ?>" id="Navigasi">BERANDA </a>
-            <a class="nav-item nav-link" href="<?php echo site_url("Katalog"); ?>" id="Navigasi">KATALOG BUKU</a>
-            <a class="nav-item nav-link" href="<?php echo site_url("DataAnggota"); ?>" id="Navigasi">DATA ANGGOTA</a>
+            <a class="nav-item nav-link" href="<?= base_url('Home') ?>" id="Navigasi">BERANDA </a>
+            <a class="nav-item nav-link" href="<?= base_url('Home/Katalog') ?>" id="Navigasi">KATALOG BUKU</a>
+            <a class="nav-item nav-link" href="<?= base_url('Home/DataAnggota') ?>" id="Navigasi">DATA ANGGOTA</a>
             <a class="nav-item nav-link" href="#" id="Navigasi">TRANSAKSI BUKU</a>
             <a class="nav-item nav-link" href="#" id="Navigasi">CMS</a>
             <a class="nav-item nav-link" href="#" id="Navigasi">HASIL LAPORAN</a>
         </div>
         <form class="form-inline">
-            <button class="btn btn-light" type="button" id="Navigasi" style="color: black" onclick="window.location='<?php echo site_url("Login"); ?>'">Masuk</button>
+            <?php if($this->session->userdata('statususer') == "login") {?>
+                <button class="btn btn-light" type="button" id="Navigasi" style="color: black" onclick="window.location='<?php echo site_url("Login/logout"); ?>'"><?php echo $username ?></button>
+            <?php }
+            else{ ?>
+                <button class="btn btn-light" type="button" id="Navigasi" style="color: black" onclick="window.location='<?php echo site_url("Login"); ?>'">Masuk</button>
+            <?php } ?>
         </form>
     </div>
 </nav>
