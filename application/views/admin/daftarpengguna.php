@@ -146,7 +146,7 @@
                             <div class="modal-body">
                               <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Saveedit') ?>" enctype="multipart/form-data">
                                 <fieldset>
-                                  <div class="form-group">
+                                  <div class="form-group" hidden>
                                     <span></span>
                                     <label class="control-label">No</label>
                                     <div class="inputGroupContainer">
@@ -257,7 +257,7 @@
         <div class="modal-body">
           <form class="well form-horizontal" method="post" action="<?= base_url('Admin/Adduser') ?>" enctype="multipart/form-data">
             <fieldset>
-              <div class="form-group">
+              <div class="form-group" hidden>
                 <span></span>
                 <label class="control-label">No</label>
                 <div class="inputGroupContainer">
@@ -298,7 +298,7 @@
               <div class="form-group">
                 <label class="control-label">Foto Profile</label>
                 <div class="inputGroupContainer">
-                  <img class="img-thumbnail" id="imagetambah" />
+                  <img class="img-thumbnail" id="imagetambah" width="1020" />
                   <div class="input-group"><span class="input-group-addon"></span><input id="tambahprofile" name="tambahprofile" placeholder="Profile" class="form-control-file" required="true" value="" type="file"></div>
                 </div>
               </div>
@@ -336,7 +336,7 @@
 
     function validatePassword() {
       if (password.value != confirm_password.value) {
-        confirm_password.setCustomValidity("Passwords Don't Match");
+        confirm_password.setCustomValidity("Password Tidak Sama");
       } else {
         confirm_password.setCustomValidity('');
       }

@@ -153,9 +153,9 @@
                                                             </button>
                                                         </div>
                                                         <div class="modal-body">
-                                                            <form class="well form-horizontal" method="post" action="<?= base_url('Admin/SaveeditBuku') ?>">
+                                                            <form class="well form-horizontal" method="post" action="<?= base_url('Admin/SaveeditBuku') ?>" enctype="multipart/form-data">
                                                                 <fieldset>
-                                                                    <div class="form-group">
+                                                                    <div class="form-group" hidden>
                                                                         <span></span>
                                                                         <label class="control-label">No</label>
                                                                         <div class="inputGroupContainer">
@@ -202,7 +202,7 @@
                                                                     <div class="form-group">
                                                                         <label class="ontrol-label">Keterangan</label>
                                                                         <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><textarea id="editketerangan" name="editketerangan" placeholder="Keterangan" class="form-control" required="true" value=""></textarea></div>
+                                                                            <div class="input-group"><span class="input-group-addon"></span><textarea id="editketerangan" name="editketerangan" placeholder="Keterangan" class="form-control" value=""></textarea></div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -338,11 +338,12 @@
                             <div class="form-group">
                                 <label class="control-label">Keterangan</label>
                                 <div class="inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"></span><textarea id="tambahketerangan" name="tambahketerangan" placeholder="Keterangan" class="form-control" required="true" value=""></textarea></div>
+                                    <div class="input-group"><span class="input-group-addon"></span><textarea id="tambahketerangan" name="tambahketerangan" placeholder="Keterangan" class="form-control" value=""></textarea></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Cover buku</label>
+                                <img class="img-thumbnail" id="imagetambah" width="1020" />
                                 <div class="inputGroupContainer">
                                     <div class="input-group"><span class="input-group-addon"></span><input id="tambahgambar" name="tambahgambar" placeholder="Gambar" class="form-control-file" required="true" value="" type="file"></div>
                                 </div>
@@ -382,7 +383,45 @@
             </div>
         </div>
     </div>
+    <script>
+        document.getElementById("tambahgambar").onchange = function() {
+            var reader = new FileReader();
 
+            reader.onload = function(e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("imagetambah").src = e.target.result;
+            };
+
+            // read the image file as a data URL.
+            reader.readAsDataURL(this.files[0]);
+        }
+    </script>
+    <script>
+        var harga = document.getElementById("tambahharga");
+
+        function validateHarga() {
+            if (harga.value < 0) {
+                harga.setCustomValidity("Harga tidak boleh dibawah 0");
+            } else {
+                harga.setCustomValidity('');
+            }
+        }
+        harga.onkeyup = validateHarga;
+        harga.onchange = validateHarga;
+    </script>
+    <script>
+        var harga = document.getElementById("editharga");
+
+        function validateHarga() {
+            if (harga.value < 0) {
+                harga.setCustomValidity("Harga tidak boleh dibawah 0");
+            } else {
+                harga.setCustomValidity('');
+            }
+        }
+        harga.onkeyup = validateHarga;
+        harga.onchange = validateHarga;
+    </script>
     <!-- Bootstrap core JavaScript-->
     <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
     <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

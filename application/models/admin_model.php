@@ -19,6 +19,10 @@ class admin_model extends CI_Model
     {
         $this->db->query("UPDATE [dbo].[User] SET email='$newemail', username='$newusername',image='$newprofile' WHERE id='$id'");
     }
+    public function saveEditBuku($id, $newjudul, $newtipe, $newpenulis, $newpenerbit, $newisbn, $newharga, $newketerangan, $newimage, $newyear)
+    {
+        $this->db->query("UPDATE [dbo].[Book] SET Judul='$newjudul',Tipe='$newtipe',Penulis='$newpenulis',Penerbit='$newpenerbit',ISBN='$newisbn',Harga='$newharga',Keterangan='$newketerangan',Image='$newimage',Year='$newyear' WHERE ID='$id'");
+    }
     public function deleteUser($id)
     {
         $this->deleteImageuser($id);

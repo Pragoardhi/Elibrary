@@ -79,8 +79,44 @@ class Admin extends CI_Controller
     }
     public function SaveeditBuku()
     {
+        $editid = $this->input->post('editid');
+        $editjudul = $this->input->post('editjudul');
+        $edittipe = $this->input->post('edittipe');
+        $editpenulis = $this->input->post('editpenulis');
+        $editpenerbit = $this->input->post('editpenerbit');
+        $editisbn = $this->input->post('editisbn');
+        $editharga = $this->input->post('editharga');
+        $editketerangan = $this->input->post('editketerangan');
+        $edittahun = $this->input->post('edittahun');
+        $datasama = false;
+        $datacheck = ($this->db->query("SELECT * FROM [dbo].[Book] WHERE NOT ID='$editid'"))->result_array();
+        $count = count($datacheck);
+        for ($i = 0; $i < $count; $i++) {
+            if ($datacheck[$i]["ISBN"] == $editisbn) {
+                $datasama = true;
+            }
+        }
+        if ($datasama) {
+            $this->session->set_flashdata('databukuada', "buku telah terdaftar");
+            redirect(base_url('Admin/Daftarbuku'));
+        } else {
+            $config['upload_path']          = './upload/book/';
+            $config['allowed_types']        = 'gif|jpg|png';
+            $config['file_name']            = $editid;
+            $config['overwrite']            = true;
+            $config['max_size']             = 1024; // 1MB
 
-        redirect(base_url('Admin/Daftarpengguna'));
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('editgambar')) {
+                $editimage = $this->upload->data("file_name");
+            } else {
+                $editimage = "default.jpg";
+            }
+            $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
+            $this->admin_model->saveEditBuku($editid, $editjudul, $edittipe, $editpenulis, $editpenerbit, $editisbn, $editharga, $editketerangan, $editimage, $edittahun);
+            redirect(base_url('Admin/Daftarbuku'));
+        }
     }
     public function Adduser()
     {
