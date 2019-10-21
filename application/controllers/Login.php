@@ -11,7 +11,7 @@ class Login extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('statusadmin') == "login" || $this->session->userdata('statususer') == "login") {
-            $this->session->sess_destroy();
+           
             redirect(base_url('Login'));
         }
         $this->load->view('login/login_page');

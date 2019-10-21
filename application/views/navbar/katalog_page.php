@@ -8,9 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="<?php echo base_url('assets') ?>/style.css" type="text/css">
-
+    <link href="<?php echo base_url('assets') ?>/css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?php echo base_url('assets') ?>/style.css" type="text/css"> 
+    <link href="<?php echo base_url('assets') ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <link href="<?php echo base_url('assets') ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <title>E-Library</title>
 </head>
 
@@ -50,26 +51,126 @@
                     echo '<h5>' . $listBooks[$i]["Judul"]    . '</h5>';
                     echo '<p>'  . $listBooks[$i]["Penulis"]  . '</p>';
                     echo '<p>'  . $listBooks[$i]["Year"]     . '</p>';
+                    ?>
+                    <button class="btn btn-secondary=" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                    <?php
                     echo '</div>';
                     }
-                }
-            }
+                    ?>
+                    <div class="modal fade" id="pinjamModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+               <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="modal-title" id="exampleModalLabel">Pinjam</h5>
+                           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                               <span aria-hidden="true">×</span>
+                           </button>
+                       </div>
+                       <div class="modal-body">
+                           <form class="well form-horizontal" method="post">
+                               <fieldset>
+                                   <div class="form-group">
+                                       <span></span>
+                                       <label class="control-label">Nama</label>
+                                       <div class="inputGroupContainer">
+                                           <div class="input-group"><span class="input-group-addon"></span><input id="nama" name="nama" placeholder="......" class="form-control" required="true" value="" readonly="readonly"></div>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <span></span>
+                                       <label class="control-label">Tanggal Peminjaman</label>
+                                       <div class="inputGroupContainer">
+                                           <div class="input-group"><span class="input-group-addon"></span><input id="tglPnj" name="tglPnj" placeholder="......" class="form-control" required="true"  value=""></div>
+                                       </div>
+                                   </div>
+                                   <div class="form-group">
+                                       <label class="ontrol-label">Status</label>
+                                       <div class="inputGroupContainer">
+                                           <div class="input-group"><span class="input-group-addon"></span><input id="statusBuku" name="statusBuku" placeholder="......" class="form-control" required="true" value=""></div>
+                                       </div>
+                                   </div>
+                               </fieldset>
+                       </div>
+                       <div class="modal-footer">
+                           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                           <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
+                       </div>
+                       </form>
+                      
+                   </div>
+               </div>
+           </div>
+           <?php
+                   }                
+           }
 
+           
             else{
                 for($i = 0; $i < $count; $i++) {
                     echo '<div class="col-lg-3" style="text-align: center">';
                     ?>
                     <img class="w-50" src="<?php echo base_url('upload/book/' . $listBooks[$i]["Image"]) ?>"/>
                     <?php
+
                     echo '<br>';
                     echo '<br>';
                     echo '<h5>' . $listBooks[$i]["Judul"]   . '</h5>';
                     echo '<p>'  . $listBooks[$i]["Penulis"] . '</p>';
                     echo '<p>'  . $listBooks[$i]["Year"]    . '</p>';
+                    ?>
+                    <button class="btn btn-primary" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                    <?php
                     echo '</div>';
+                    ?>
+            
+                     <div class="modal fade" id="pinjamModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Pinjam</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="well form-horizontal" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <span></span>
+                                        <label class="control-label">Nama</label>
+                                        <div class="inputGroupContainer">
+                                            <div class="input-group"><span class="input-group-addon"></span><input id="nama" name="nama" placeholder="......" class="form-control" required="true" value=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <span></span>
+                                        <label class="control-label">Tanggal Peminjaman</label>
+                                        <div class="inputGroupContainer">
+                                            <div class="input-group"><span class="input-group-addon"></span><input id="tglPnj" name="tglPnj" placeholder="......" class="form-control" required="true"  value=""></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="ontrol-label">Status</label>
+                                        <div class="inputGroupContainer">
+                                            <div class="input-group"><span class="input-group-addon"></span><input id="statusBuku" name="statusBuku" placeholder="......" class="form-control" required="true" value=""></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="buttonCalvin">Save</button>
+                        </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <?php
                     }                
             }
             ?>
+            
         </div>
     </div>
     </div>
@@ -83,5 +184,24 @@
 
 <!-- footer -->
 <?php $this->load->view('template/footer.php') ?>
+
+<!-- Logout Modal-->
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yakin mau keluar?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Pilih keluar jika udah ga sabar.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Sabar, sebentar lagi keluar.</button>
+          <button class="btn btn-danger" onclick="window.location='<?php echo site_url("Login/logout"); ?>'">Keluar sekarang!</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </html>

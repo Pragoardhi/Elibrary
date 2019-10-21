@@ -44,4 +44,17 @@ class Home extends CI_Controller
             $this->load->view('navbar/dataAnggota_page', $data);
         }
     }
+
+    public function TransaksiUser()
+    {
+        if ($this->session->userdata('statususer') != "login") {
+            redirect(base_url('Login'));
+        }
+        else{
+            $this->load->model('admin_model');
+            $data['statususer'] = $this->session->userdata('statususer');
+            $data['username'] = $this->session->userdata('username');
+            $this->load->view('navbar/transaksiUser_page', $data);
+        }
+    }
 }
