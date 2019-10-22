@@ -8,10 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link href="<?php echo base_url('assets') ?>/css/sb-admin-2.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" href="<?php echo base_url('assets') ?>/style.css" type="text/css"> 
-    <link href="<?php echo base_url('assets') ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <link href="<?php echo base_url('assets') ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    
+   
     <title>E-Library</title>
 </head>
 
@@ -52,54 +52,42 @@
                     echo '<p>'  . $listBooks[$i]["Penulis"]  . '</p>';
                     echo '<p>'  . $listBooks[$i]["Year"]     . '</p>';
                     ?>
-                    <button class="btn btn-secondary=" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                    <button class="btn btn-dark my-0 my-sm-0" id="pnjbtn"  data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>">Pinjam</button>
                     <?php
                     echo '</div>';
                     }
                     ?>
+
                     <div class="modal fade" id="pinjamModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-               <div class="modal-dialog" role="document">
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <h5 class="modal-title" id="exampleModalLabel">Pinjam</h5>
-                           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                               <span aria-hidden="true">×</span>
-                           </button>
-                       </div>
-                       <div class="modal-body">
-                           <form class="well form-horizontal" method="post">
-                               <fieldset>
-                                   <div class="form-group">
-                                       <span></span>
-                                       <label class="control-label">Nama</label>
-                                       <div class="inputGroupContainer">
-                                           <div class="input-group"><span class="input-group-addon"></span><input id="nama" name="nama" placeholder="......" class="form-control" required="true" value="" readonly="readonly"></div>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <span></span>
-                                       <label class="control-label">Tanggal Peminjaman</label>
-                                       <div class="inputGroupContainer">
-                                           <div class="input-group"><span class="input-group-addon"></span><input id="tglPnj" name="tglPnj" placeholder="......" class="form-control" required="true"  value=""></div>
-                                       </div>
-                                   </div>
-                                   <div class="form-group">
-                                       <label class="ontrol-label">Status</label>
-                                       <div class="inputGroupContainer">
-                                           <div class="input-group"><span class="input-group-addon"></span><input id="statusBuku" name="statusBuku" placeholder="......" class="form-control" required="true" value=""></div>
-                                       </div>
-                                   </div>
-                               </fieldset>
-                       </div>
-                       <div class="modal-footer">
-                           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                           <button type="submit" class="btn btn-primary" id="buttonSubmit">Save</button>
-                       </div>
-                       </form>
-                      
-                   </div>
-               </div>
-           </div>
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Pinjam</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="well form-horizontal" method="post">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <span></span>
+                                        <label class="control-label">Kapan mau pinjam buku ini?</label>
+                                        <div class="inputGroupContainer">
+                                            <div class="form-group"><span class="input-group-addon"></span><input type="date" id="tglPnj" name="tglPnj" placeholder="......" class="form-control" required="true"  value="" rw></div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak jadi</button>
+                            <button type="submit" class="btn btn-primary" id="buttonCalvin">Simpan</button>
+                        </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
            <?php
                    }                
            }
@@ -118,7 +106,7 @@
                     echo '<p>'  . $listBooks[$i]["Penulis"] . '</p>';
                     echo '<p>'  . $listBooks[$i]["Year"]    . '</p>';
                     ?>
-                    <button class="btn btn-primary" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                    <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
                     <?php
                     echo '</div>';
                     ?>
@@ -137,29 +125,16 @@
                                 <fieldset>
                                     <div class="form-group">
                                         <span></span>
-                                        <label class="control-label">Nama</label>
+                                        <label class="control-label">Kapan mau pinjam buku ini?</label>
                                         <div class="inputGroupContainer">
-                                            <div class="input-group"><span class="input-group-addon"></span><input id="nama" name="nama" placeholder="......" class="form-control" required="true" value=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <span></span>
-                                        <label class="control-label">Tanggal Peminjaman</label>
-                                        <div class="inputGroupContainer">
-                                            <div class="input-group"><span class="input-group-addon"></span><input id="tglPnj" name="tglPnj" placeholder="......" class="form-control" required="true"  value=""></div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="ontrol-label">Status</label>
-                                        <div class="inputGroupContainer">
-                                            <div class="input-group"><span class="input-group-addon"></span><input id="statusBuku" name="statusBuku" placeholder="......" class="form-control" required="true" value=""></div>
+                                            <div class="form-group"><span class="input-group-addon"></span><input type="date" id="tglPnj" name="tglPnj" placeholder="......" class="form-control" required="true"  value="" rw></div>
                                         </div>
                                     </div>
                                 </fieldset>
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary" id="buttonCalvin">Save</button>
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak jadi</button>
+                            <button type="submit" class="btn btn-primary" id="buttonCalvin">Simpan</button>
                         </div>
                         </form>
                         
@@ -203,5 +178,4 @@
       </div>
     </div>
   </div>
-
 </html>
