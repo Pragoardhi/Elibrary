@@ -14,7 +14,7 @@
         </div>
         <form class="form-inline">
             <?php if($this->session->userdata('statususer') == "login") {?>
-                <button  data-toggle="modal" data-target="#logoutModal" class="btn btn-light" type="button" id="Navigasi" style="color: black"><?php echo $username ?></button>
+                <button  data-toggle="modal" data-target="#logoutModal" class="btn btn-light" type="button" id="Navigasi" style="color: black"><?php echo $userId ?></button>
             <?php }
             else{ ?>
                 <button class="btn btn-light" type="button" id="Navigasi" style="color: black" onclick="window.location='<?php echo site_url("Login"); ?>'">Masuk</button>

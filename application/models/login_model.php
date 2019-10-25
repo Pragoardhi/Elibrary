@@ -23,4 +23,10 @@ class login_model extends CI_Model
         $check = $this->db->query("SELECT * FROM [dbo].[User] WHERE [email]='$email' AND [pass]='$password'")->row_array();
         return $check['username'];
     }
+
+    public function getId($email, $password)
+    {
+        $check1 = $this->db->query("SELECT * FROM [dbo].[User] WHERE [email]='$email' AND [pass]='$password'")->row_array();
+        return $check1['id'];
+    }
 }

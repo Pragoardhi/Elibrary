@@ -29,10 +29,7 @@
             <div class="text-center">
                 <button type="submit" class="btn btn-dark" id="buttonSubmit">Masuk</button>
             </div>
-            <div class="text-center" id="link">
-                <a href="#" class="card-link">Lupa Password?</a>
-                <a href="TambahAnggota.html" class="card-link">Belum Punya Akun? Daftar</a>
-            </div>
+
         </div>
     </form>
 
