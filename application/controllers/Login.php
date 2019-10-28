@@ -11,7 +11,7 @@ class Login extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('statusadmin') == "login" || $this->session->userdata('statususer') == "login") {
-           
+
             redirect(base_url('Login'));
         }
         $this->load->view('login/login_page');
@@ -22,17 +22,20 @@ class Login extends CI_Controller
         $password = $this->input->post('password');
         $check = $this->login_model->login($email, $password);
         $username = $this->login_model->getUsername($email, $password);
+        $id = $this->login_model->getId($email, $password);
         if ($check == 1) {
             $data_session = array(
                 'statusadmin' => 'login',
-                'username' => $username
+                'username' => $username,
+                'userId' => $userId
             );
             $this->session->set_userdata($data_session);
             redirect(base_url('Admin'));
         } else if ($check == -1) {
             $data_session = array(
                 'statususer' => 'login',
-                'username' => $username
+                'username' => $username,
+                'userId' => $userId
             );
             $this->session->set_userdata($data_session);
             redirect(base_url('Home'));
