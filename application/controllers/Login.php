@@ -27,7 +27,7 @@ class Login extends CI_Controller
             $data_session = array(
                 'statusadmin' => 'login',
                 'username' => $username,
-                'userId' => $userId
+                'id' => $id
             );
             $this->session->set_userdata($data_session);
             redirect(base_url('Admin'));
@@ -35,7 +35,7 @@ class Login extends CI_Controller
             $data_session = array(
                 'statususer' => 'login',
                 'username' => $username,
-                'userId' => $userId
+                'id' => $id
             );
             $this->session->set_userdata($data_session);
             redirect(base_url('Home'));
