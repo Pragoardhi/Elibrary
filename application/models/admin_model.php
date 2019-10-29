@@ -41,7 +41,7 @@ class admin_model extends CI_Model
     {
         $this->db->query("INSERT INTO [dbo].[Book](Judul,Tipe,Penulis,Penerbit,ISBN,Harga,Keterangan,Image,Year) VALUES ('$judul','$tipe','$penulis','$penerbit','$isbn','$harga','$keterangan','$image','$year')");
     }
-    private function deleteImage($id)
+    public function deleteImage($id)
     {
         $data = $this->db->query("SELECT * FROM [dbo].[Book] WHERE ID='$id'");
         $select = $data->result_array();
@@ -52,7 +52,7 @@ class admin_model extends CI_Model
             return array_map('unlink', glob(FCPATH . "upload/book/$filename.*"));
         }
     }
-    private function deleteImageuser($id)
+    public function deleteImageuser($id)
     {
         $data = $this->db->query("SELECT * FROM [dbo].[User] WHERE id='$id'");
         $select = $data->result_array();
