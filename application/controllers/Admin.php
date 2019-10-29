@@ -44,6 +44,7 @@ class Admin extends CI_Controller
     }
     public function Saveedit()
     {
+        $datasama = false;
         $editid = $this->input->post('editid');
         $editusername = $this->input->post('editusername');
         $editemail = $this->input->post('editemail');
@@ -65,6 +66,13 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
                 redirect(base_url('Admin/Daftarpengguna'));
             } else {
+                $data = $this->db->query("SELECT * FROM [dbo].[User] WHERE id='$editid'");
+                $select = $data->result_array();
+
+                if ($select[0]["image"] != "default.jpg") {
+                    $filename = explode(".", $select[0]["image"])[0];
+                    array_map('unlink', glob(FCPATH . "upload/user/$filename.*"));
+                }
                 $config['upload_path']          = './upload/user/';
                 $config['allowed_types']        = 'gif|jpg|png';
                 $config['file_name']            = $editid;
@@ -107,6 +115,13 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('databukuada', "buku telah terdaftar");
             redirect(base_url('Admin/Daftarbuku'));
         } else {
+            $data = $this->db->query("SELECT * FROM [dbo].[Book] WHERE ID='$editid'");
+            $select = $data->result_array();
+
+            if ($select[0]["Image"] != "default.jpg") {
+                $filename = explode(".", $select[0]["Image"])[0];
+                array_map('unlink', glob(FCPATH . "upload/book/$filename.*"));
+            }
             $config['upload_path']          = './upload/book/';
             $config['allowed_types']        = 'gif|jpg|png';
             $config['file_name']            = $editid;

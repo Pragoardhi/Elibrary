@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin') ?>">
         <div class="sidebar-brand-icon ">
             <i class="fas fa-user"></i>
         </div>
@@ -48,7 +48,7 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="<?= base_url('Admin/Daftarbuku') ?>">Daftar Buku</a>
-                <a class="collapse-item" href="utilities-animation.html">Transaksi Buku</a>
+                <a class="collapse-item" href="#">Transaksi Buku</a>
 
             </div>
         </div>
