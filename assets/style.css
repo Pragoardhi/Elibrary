@@ -11,8 +11,7 @@
 }
 
 #navbarNav {
-  margin-left: auto;
-  margin-right: auto;
+  margin-right: 10px;
 }
 
 #Navigasi {
@@ -38,35 +37,33 @@
   margin-right: auto;
 }
 
-.Title-buku{
+.Title-buku {
   width: 100%;
 }
 
-.Text-title-buku{
+.Text-title-buku {
   text-align: center;
 }
 
-.Text-title-buku-2{
+.Text-title-buku-2 {
   text-align: center;
   color: gray;
 }
 
-#marketing > .row > #kolom {
+#marketing>.row>#kolom {
   padding-top: 10px;
   margin-bottom: 1.5rem;
   text-align: center;
   border: 1px solid gray;
 }
 
-
-
-#daftar > .row > #daftar1 {
+#daftar>.row>#daftar1 {
   padding-top: 10px;
   margin-bottom: 1.5rem;
   text-align: center
 }
 
-#fontMasuk{
+#fontMasuk {
   width: 100%;
   font-size: 40px;
   padding: 20px;

@@ -179,7 +179,20 @@
                                   <div class="form-group">
                                     <label class="control-label">Foto Profile</label>
                                     <div class="inputGroupContainer">
-                                      <div class="input-group"><span class="input-group-addon"></span><input id="editprofile" name="editprofile" placeholder="Profile" class="form-control-file" required="true" value="" type="file"></div>
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editprofile" name="editprofile" placeholder="Profile" class="form-control-file" value="" type="file"></div>
+                                    </div>
+                                  </div>
+                                  <!-- password lama disimpan -->
+                                  <div class="form-group">
+                                    <label class="control-label">Password lama</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="oldpassword" name="oldpassword" placeholder="Password" class="form-control" required="true" value="" type="text"></div>
+                                    </div>
+                                  </div>
+                                  <div class="form-group">
+                                    <label class="control-label">Password baru</label>
+                                    <div class="inputGroupContainer">
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editoldpassword" name="editoldpassword" placeholder="Password" class="form-control" required="true" value="" type="password"></div>
                                     </div>
                                   </div>
                                 </fieldset>
@@ -192,7 +205,6 @@
                           </div>
                         </div>
                       </div>
-
                       <!-- Delete Modal-->
                       <div class="modal fade" id="deleteModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
@@ -299,7 +311,7 @@
                 <label class="control-label">Foto Profile</label>
                 <div class="inputGroupContainer">
                   <img class="img-thumbnail" id="imagetambah" width="1020" />
-                  <div class="input-group"><span class="input-group-addon"></span><input id="tambahprofile" name="tambahprofile" placeholder="Profile" class="form-control-file" required="true" value="" type="file"></div>
+                  <div class="input-group"><span class="input-group-addon"></span><input id="tambahprofile" name="tambahprofile" placeholder="Profile" class="form-control-file" value="" type="file"></div>
                 </div>
               </div>
             </fieldset>

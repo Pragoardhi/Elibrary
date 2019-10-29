@@ -15,9 +15,9 @@ class admin_model extends CI_Model
         // echo $data->result_array();
         return $data->result_array();
     }
-    public function saveEditUser($id, $newusername, $newemail, $newprofile)
+    public function saveEditUser($id, $newusername, $newemail, $newprofile, $password)
     {
-        $this->db->query("UPDATE [dbo].[User] SET email='$newemail', username='$newusername',image='$newprofile' WHERE id='$id'");
+        $this->db->query("UPDATE [dbo].[User] SET email='$newemail', username='$newusername', image='$newprofile', pass='$password' WHERE id='$id'");
     }
     public function saveEditBuku($id, $newjudul, $newtipe, $newpenulis, $newpenerbit, $newisbn, $newharga, $newketerangan, $newimage, $newyear)
     {
