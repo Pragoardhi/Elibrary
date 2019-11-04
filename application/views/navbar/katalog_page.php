@@ -103,7 +103,13 @@
                             echo '<p>'  . $listBooks[$i]["Penulis"] . '</p>';
                             echo '<p>'  . $listBooks[$i]["Year"]    . '</p>';
                             ?>
-                    <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                    <?php if ($this->session->userdata('statususer') == "login") { ?>
+                        <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                    <?php } else { ?>
+                        <?php
+                            echo '<br>';
+                        ?>
+                    <?php } ?>
                     <?php
                             echo '</div>';
                             ?>
