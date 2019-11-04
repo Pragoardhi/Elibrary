@@ -12,10 +12,28 @@
         </div>
         <form class="form-inline">
             <?php if ($this->session->userdata('statususer') == "login") { ?>
-                <button data-toggle="modal" data-target="#logoutModal" class="btn btn-light" type="button" id="Navigasi" style="color: black"><?php echo $id ?></button>
+                <button data-toggle="modal" data-target="#logoutModal" class="btn btn-light" type="button" id="Navigasi" style="color: black"><?php echo $username ?></button>
             <?php } else { ?>
                 <button class="btn btn-light" type="button" id="Navigasi" style="color: black" onclick="window.location='<?php echo site_url("Login"); ?>'">Masuk</button>
             <?php } ?>
         </form>
     </div>
 </nav>
+
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Yakin mau keluar?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Apakah anda ingin Logout?</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+          <button class="btn btn-danger" onclick="window.location='<?php echo site_url("Login/logout"); ?>'">Log Out</button>
+        </div>
+      </div>
+    </div>
+  </div>

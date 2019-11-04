@@ -80,23 +80,4 @@
 <!-- footer -->
 <?php $this->load->view('template/footer.php') ?>
 
-<!-- Logout Modal-->
-<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Yakin mau keluar?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Pilih keluar jika udah ga sabar.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Sabar, sebentar lagi keluar.</button>
-          <button class="btn btn-danger" onclick="window.location='<?php echo site_url("Login/logout"); ?>'">Keluar sekarang!</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
 </html>
