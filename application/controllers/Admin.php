@@ -17,6 +17,8 @@ class Admin extends CI_Controller
             $data['username'] = $this->session->userdata('username');
             $data['totaluser'] = $this->admin_model->getUser();
             $data['totalbuku'] = $this->admin_model->getBuku();
+            $data['listuser'] = $this->admin_model->getUser();
+            $data['listbuku'] = $this->admin_model->getBuku();
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -27,7 +29,7 @@ class Admin extends CI_Controller
         } else {
             $data['username'] = $this->session->userdata('username');
             $data['listuser'] = $this->admin_model->getUser();
-
+            $data['listbuku'] = $this->admin_model->getBuku();
             $this->load->view('admin/daftarpengguna', $data);
         }
     }
@@ -38,7 +40,7 @@ class Admin extends CI_Controller
         } else {
             $data['username'] = $this->session->userdata('username');
             $data['listbuku'] = $this->admin_model->getBuku();
-
+            $data['listuser'] = $this->admin_model->getUser();
             $this->load->view('admin/daftarbuku', $data);
         }
     }
@@ -166,6 +168,7 @@ class Admin extends CI_Controller
             }
             $this->session->set_flashdata('databerhasil', "data telah berhasil ditambahkan");
             $this->admin_model->addUser($tambahusername, $tambahemail, $tambahstatus, $tambahpassword, $tambahprofile);
+            $this->session->set_flashdata('notifuser', 'true');
             redirect(base_url('Admin/Daftarpengguna'));
         }
     }
@@ -213,6 +216,7 @@ class Admin extends CI_Controller
             }
             $tambahtahun = $this->input->post('tambahtahun');
             $this->admin_model->addBuku($tambahjudul, $tambahtipe, $tambahpenulis, $tambahpenerbit, $tambahisbn, $tambahharga, $tambahketerangan, $tambahgambar, $tambahtahun);
+            $this->session->set_flashdata('notifbuku', 'true');
             redirect(base_url('Admin/Daftarbuku'));
         }
     }

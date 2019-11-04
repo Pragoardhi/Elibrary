@@ -20,7 +20,9 @@
 
   <!-- Custom styles for this page -->
   <link href="<?php echo base_url('assets') ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.0/css/buttons.bootstrap4.min.css">
 </head>
 
 <body id="page-top">
@@ -80,12 +82,12 @@
           <div class="card shadow mb-4">
 
             <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-primary">Daftar Pengguna <button class="btn btn-success" type="button" style="float:right; margin-left:10px;" id="export">Export xls </button><button class="btn btn-primary" data-toggle="modal" data-target="#tambahModal" style="float:right">Tambah Pengguna</button></h3>
+              <h3 class="m-0 font-weight-bold text-primary">Daftar Pengguna <button class="btn btn-primary" data-toggle="modal" data-target="#tambahModal" style="float:right">Tambah Pengguna</button></h3>
 
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" name="tableuser" width="100%" cellspacing="0">
+                <table class="table table-striped table-bordered" id="dataTable" name="tableuser" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -344,6 +346,27 @@
       </div>
     </div>
   </div>
+
+  <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
+  <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="<?php echo base_url('assets') ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="<?php echo base_url('assets') ?>/js/sb-admin-2.min.js"></script>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.0/js/dataTables.buttons.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.print.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/1.6.0/js/buttons.colVis.min.js"></script>
   <script>
     var password = document.getElementById("tambahpassword"),
       confirm_password = document.getElementById("confirmtambahpassword");
@@ -373,28 +396,27 @@
     }
   </script>
   <script>
-    $("#export").click(function(e) {
-      window.open('data:application/vnd.ms-excel,' + $('#dataTable').html());
-      e.preventDefault();
+    $(document).ready(function() {
+      $('#dataTable').DataTable({
+        dom: 'Bfrtip',
+        buttons: [{
+            extend: 'excelHtml5',
+            exportOptions: {
+              columns: [0, 2, 3, 4]
+            },
+            className: 'btn btn-success'
+          },
+          {
+            extend: 'pdfHtml5',
+            exportOptions: {
+              columns: [0, 2, 3, 4]
+            },
+            className: 'btn btn-danger'
+          }
+        ]
+      });
     });
   </script>
-  <!-- Bootstrap core JavaScript-->
-  <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
-  <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <!-- Core plugin JavaScript-->
-  <script src="<?php echo base_url('assets') ?>/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-  <!-- Custom scripts for all pages-->
-  <script src="<?php echo base_url('assets') ?>/js/sb-admin-2.min.js"></script>
-
-  <!-- Page level plugins -->
-  <script src="<?php echo base_url('assets') ?>/vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="<?php echo base_url('assets') ?>/vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="<?php echo base_url('assets') ?>/js/demo/datatables-demo.js"></script>
-  <script src="<?php echo base_url('assets') ?>/jquery.table2excel.js"></script>
 </body>
 
 </html>
