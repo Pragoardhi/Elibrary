@@ -44,37 +44,46 @@ class Admin extends CI_Controller
     }
     public function Saveedit()
     {
+        $datasama = false;
         $editid = $this->input->post('editid');
         $editusername = $this->input->post('editusername');
         $editemail = $this->input->post('editemail');
-
-        $datacheck = ($this->db->query("SELECT * FROM [dbo].[User] WHERE NOT id='$editid'"))->result_array();
-        $count = count($datacheck);
-        for ($i = 0; $i < $count; $i++) {
-            if ($datacheck[$i]["username"] == $editusername || $datacheck[$i]["email"] == $editemail) {
-                $datasama = true;
-            }
-        }
-        if ($datasama) {
-            $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
+        $oldpassword = $this->input->post('oldpassword');
+        $editpassword = $this->input->post('editoldpassword');
+        $passwordcheck = ($this->db->query("SELECT * FROM [dbo].[User] WHERE id='$editid'"))->result_array();
+        if ($passwordcheck[0]["pass"] != $oldpassword) {
+            $this->session->set_flashdata('dataada', "password tidak sesuai");
             redirect(base_url('Admin/Daftarpengguna'));
         } else {
-            $config['upload_path']          = './upload/user/';
-            $config['allowed_types']        = 'gif|jpg|png';
-            $config['file_name']            = $editid;
-            $config['overwrite']            = true;
-            $config['max_size']             = 1024; // 1MB
-
-            $this->load->library('upload', $config);
-
-            if ($this->upload->do_upload('editprofile')) {
-                $editprofile = $this->upload->data("file_name");
-            } else {
-                $editprofile = "default.jpg";
+            $datacheck = ($this->db->query("SELECT * FROM [dbo].[User] WHERE NOT id='$editid'"))->result_array();
+            $count = count($datacheck);
+            for ($i = 0; $i < $count; $i++) {
+                if ($datacheck[$i]["username"] == $editusername || $datacheck[$i]["email"] == $editemail) {
+                    $datasama = true;
+                }
             }
-            $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
-            $this->admin_model->saveEditUser($editid, $editusername, $editemail, $editprofile);
-            redirect(base_url('Admin/Daftarpengguna'));
+            if ($datasama) {
+                $this->session->set_flashdata('dataada', "username atau email sudah terdaftar");
+                redirect(base_url('Admin/Daftarpengguna'));
+            } else {
+                $this->admin_model->deleteImageuser($editid);
+                $config['upload_path']          = './upload/user/';
+                $config['allowed_types']        = 'gif|jpg|png';
+                $config['file_name']            = $editid;
+                $config['overwrite']            = true;
+                $config['max_size']             = 1024; // 1MB
+
+                $this->load->library('upload', $config);
+
+                if ($this->upload->do_upload('editprofile')) {
+                    $editprofile = $this->upload->data("file_name");
+                } else {
+                    $editprofile = "default.jpg";
+                }
+                $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
+                $this->admin_model->saveEditUser($editid, $editusername, $editemail, $editprofile, $editpassword);
+                redirect(base_url('Admin/Daftarpengguna'));
+            }
         }
     }
     public function SaveeditBuku()
@@ -100,6 +109,7 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('databukuada', "buku telah terdaftar");
             redirect(base_url('Admin/Daftarbuku'));
         } else {
+            $this->admin_model->deleteImage($editid);
             $config['upload_path']          = './upload/book/';
             $config['allowed_types']        = 'gif|jpg|png';
             $config['file_name']            = $editid;

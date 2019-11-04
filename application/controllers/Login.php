@@ -11,7 +11,7 @@ class Login extends CI_Controller
     public function index()
     {
         if ($this->session->userdata('statusadmin') == "login" || $this->session->userdata('statususer') == "login") {
-           
+
             redirect(base_url('Login'));
         }
         $this->load->view('login/login_page');
@@ -40,8 +40,8 @@ class Login extends CI_Controller
             $this->session->set_userdata($data_session);
             redirect(base_url('Home'));
         } else {
-            echo "Username dan password salah !";
-            die();
+            $this->session->set_flashdata('gagallogin', 'username atau password tidak terdaftar');
+            redirect(base_url('Login'));
         }
     }
     public function logout()

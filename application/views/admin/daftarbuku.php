@@ -208,7 +208,7 @@
                                                                     <div class="form-group">
                                                                         <label class="control-label">Cover buku</label>
                                                                         <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="editgambar" name="editgambar" placeholder="Gambar" class="form-control-file" required="true" value="" type="file"></div>
+                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="editgambar" name="editgambar" placeholder="Gambar" class="form-control-file" value="" type="file"></div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -345,7 +345,7 @@
                                 <label class="control-label">Cover buku</label>
                                 <img class="img-thumbnail" id="imagetambah" width="1020" />
                                 <div class="inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahgambar" name="tambahgambar" placeholder="Gambar" class="form-control-file" required="true" value="" type="file"></div>
+                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahgambar" name="tambahgambar" placeholder="Gambar" class="form-control-file" value="" type="file"></div>
                                 </div>
                             </div>
                             <div class="form-group">

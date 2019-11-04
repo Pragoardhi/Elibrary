@@ -9,14 +9,11 @@
             <a class="nav-item nav-link" href="<?= base_url('Home/Katalog') ?>" id="Navigasi">KATALOG BUKU</a>
             <a class="nav-item nav-link" href="<?= base_url('Home/DataAnggota') ?>" id="Navigasi">DATA ANGGOTA</a>
             <a class="nav-item nav-link" href="<?= base_url('Home/TransaksiUser') ?>" id="Navigasi">TRANSAKSI BUKU</a>
-            <a class="nav-item nav-link" href="#" id="Navigasi">CMS</a>
-            <a class="nav-item nav-link" href="#" id="Navigasi">HASIL LAPORAN</a>
         </div>
         <form class="form-inline">
-            <?php if($this->session->userdata('statususer') == "login") {?>
-                <button  data-toggle="modal" data-target="#logoutModal" class="btn btn-light" type="button" id="Navigasi" style="color: black"><?php echo $username ?></button>
-            <?php }
-            else{ ?>
+            <?php if ($this->session->userdata('statususer') == "login") { ?>
+                <button data-toggle="modal" data-target="#logoutModal" class="btn btn-light" type="button" id="Navigasi" style="color: black"><?php echo $id ?></button>
+            <?php } else { ?>
                 <button class="btn btn-light" type="button" id="Navigasi" style="color: black" onclick="window.location='<?php echo site_url("Login"); ?>'">Masuk</button>
             <?php } ?>
         </form>
