@@ -20,7 +20,7 @@
 
   <!-- Custom styles for this page -->
   <link href="<?php echo base_url('assets') ?>/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -78,12 +78,14 @@
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
+
             <div class="card-header py-3">
-              <h3 class="m-0 font-weight-bold text-primary">Daftar Pengguna <button class="btn btn-primary" data-toggle="modal" data-target="#tambahModal" style="float:right">Tambah Pengguna</button></h3>
+              <h3 class="m-0 font-weight-bold text-primary">Daftar Pengguna <button class="btn btn-success" type="button" style="float:right; margin-left:10px;" id="export">Export xls </button><button class="btn btn-primary" data-toggle="modal" data-target="#tambahModal" style="float:right">Tambah Pengguna</button></h3>
+
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" name="tableuser" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>No</th>
@@ -370,7 +372,12 @@
       reader.readAsDataURL(this.files[0]);
     }
   </script>
-
+  <script>
+    $("#export").click(function(e) {
+      window.open('data:application/vnd.ms-excel,' + $('#dataTable').html());
+      e.preventDefault();
+    });
+  </script>
   <!-- Bootstrap core JavaScript-->
   <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -387,8 +394,7 @@
 
   <!-- Page level custom scripts -->
   <script src="<?php echo base_url('assets') ?>/js/demo/datatables-demo.js"></script>
-
-
+  <script src="<?php echo base_url('assets') ?>/jquery.table2excel.js"></script>
 </body>
 
 </html>

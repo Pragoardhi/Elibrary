@@ -40,8 +40,8 @@ class Login extends CI_Controller
             $this->session->set_userdata($data_session);
             redirect(base_url('Home'));
         } else {
-            echo "Username dan password salah !";
-            die();
+            $this->session->set_flashdata('gagallogin', 'username atau password tidak terdaftar');
+            redirect(base_url('Login'));
         }
     }
     public function logout()
