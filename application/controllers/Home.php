@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Home extends CI_Controller
 {
+    function __construct()
+    {
+        parent::__construct();
+        $this->load->model('katalog_buku');
+        
+    }
     public function index()
     {
         $this->load->model('katalog_buku');
@@ -23,6 +29,7 @@ class Home extends CI_Controller
         $this->load->view('navbar/katalog_page', $data);
     }
 
+
     public function DataAnggota()
     {
         $this->load->model('admin_model');
@@ -42,6 +49,8 @@ class Home extends CI_Controller
             $data['statususer'] = $this->session->userdata('statususer');
             $data['username'] = $this->session->userdata('username');
             $data['id'] = $this->session->userdata('id');
+            $data['listPeminjaman'] = $this->katalog_buku->getPeminjaman();
+            $data['listBuku'] = $this->katalog_buku->getBook();
             $this->load->view('navbar/transaksiUser_page', $data);
         }
     }
@@ -87,13 +96,17 @@ class Home extends CI_Controller
             redirect(base_url('Admin/Daftarpengguna'));
         }
     }
-    public function AddPeminjaman()
-    {
-        $tambahIdUser = $this->input->post('tambahjudul');
-        $tambahIdBook = $this->input->post('tambahtipe');
-        $tambahTglPeminjaman = $this->input->post('tambahpenulis');
-        $tambahTglPengembalian = $this->input->post('tambahpenerbit');
-        $this->katalog_buku->addPeminajam($tambahIdUser, $tambahIdBook, $tambahTglPeminjaman, $tambahTglPengembalian);
-        redirect(base_url('Admin/Daftarbuku'));
+
+    public function addPinjam(){
+        $pinjamIdUser = $this->session->userdata('id');
+        $pinjamIdBook = $this->uri->segment(3);
+        $pinjamTglBook = $this->input->post('tglPnj');
+        $kembaliTglBook = date('Y-m-d', strtotime('+7 days', strtotime($pinjamTglBook)));
+        $this->katalog_buku->addPeminjaman($pinjamIdUser, $pinjamIdBook, $pinjamTglBook, $kembaliTglBook);
+        redirect(base_url('Home/TransaksiUser'));
+        // echo "<div><p> $PinjamIdUser </p></div>";
+        // echo "<div><p> $pinjamTglBook </p></div>";
+        // echo "<div><p> $kembaliTglBook </p></div>";
+        // echo "<div><p> $pinjamIdBook </p></div>";
     }
 }

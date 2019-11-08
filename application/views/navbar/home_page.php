@@ -61,17 +61,32 @@
             <?php
             $count  = count($listBook);
 
-            for ($i = $count - 3; $i < $count; $i++) {
-                echo '<div class="col-lg-4" style="text-align: center">';
-                ?>
-                <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>" />
+            if ($count >= 3) {
+                for ($i = $count - 3; $i < $count; $i++) {
+                    echo '<div class="col-lg-4" style="text-align: center">';
+                    ?>
+                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>" />
+                <?php
+                        echo '<br>';
+                        echo '<br>';
+                        echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';
+                        echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
+                        echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
+                        echo '</div>';
+                    }
+                } else if (($count <= 2)) {
+                    for ($i = 0; $i < $count; $i++) {
+                        echo '<div class="col-lg-4" style="text-align: center">';
+                        ?>
+                    <img class="w-50" src="<?php echo base_url('upload/book/' . $listBook[$i]["Image"]) ?>" />
             <?php
-                echo '<br>';
-                echo '<br>';
-                echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';
-                echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
-                echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
-                echo '</div>';
+                    echo '<br>';
+                    echo '<br>';
+                    echo '<h5>' . $listBook[$i]["Judul"]   . '</h5>';
+                    echo '<p>'  . $listBook[$i]["Penulis"] . '</p>';
+                    echo '<p>'  . $listBook[$i]["Year"]    . '</p>';
+                    echo '</div>';
+                }
             }
             ?>
         </div>
