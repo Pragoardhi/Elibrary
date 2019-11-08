@@ -15,4 +15,11 @@ class katalog_buku extends CI_Model
         $this->db->query("INSERT INTO [dbo].[Peminjaman](id, ID_Buku, Tgl_Peminjaman, Tgl_Pengembalian) VALUES ('$idUser', '$idBook', '$tglPeminjaman', '$tglPengembalian')");
     }
 
+    public function getPeminjaman()
+    {
+        $data = $this->db->query("SELECT * FROM [dbo].[Peminjaman]");
+        // echo $data->result_array();
+        return $data->result_array();
+    }
+
 }

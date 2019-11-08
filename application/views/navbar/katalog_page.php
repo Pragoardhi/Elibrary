@@ -124,7 +124,7 @@
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form class="well form-horizontal" method="post">
+                                    <form class="well form-horizontal" method="post" action="<?= base_url() ?>Home/addPinjam/<?php echo $listBooks[$i]["ID"] ?>">
                                         <fieldset>
                                             <div class="form-group">
                                                 <span></span>
@@ -137,10 +137,9 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak jadi</button>
-                                    <button type="submit" class="btn btn-primary" id="buttonCalvin">Simpan</button>
+                                    <button type="submit" class="btn btn-primary" id="buttonCalvin" onclick="location.href='<?= base_url() ?>Home/addPinjam/<?php echo $listBooks[$i]["ID"] ?>'">Simpan</button>
                                 </div>
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -148,7 +147,6 @@
                 }
             }
             ?>
-
         </div>
     </div>
     </div>
