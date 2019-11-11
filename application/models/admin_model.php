@@ -11,8 +11,13 @@ class admin_model extends CI_Model
     }
     public function getBuku()
     {
-        $data = $this->db->query("SELECT * FROM [dbo].[Book]");
+        $data = $this->db->query("SELECT dbo.Book.ID,dbo.Book.Judul,dbo.Tipe_book.Tipe, dbo.Book.Penulis, dbo.Book.Penerbit, dbo.Book.ISBN, dbo.Book.Harga, dbo.Book.Keterangan, dbo.Book.Image, dbo.Book.Year FROM dbo.Book INNER JOIN dbo.Tipe_book ON dbo.Book.id_tipe = dbo.Tipe_book.id");
         // echo $data->result_array();
+        return $data->result_array();
+    }
+    public function getTipeBuku()
+    {
+        $data = $this->db->query("SELECT * FROM dbo.Tipe_book");
         return $data->result_array();
     }
     public function saveEditUser($id, $newusername, $newemail, $newprofile, $password)
@@ -21,7 +26,7 @@ class admin_model extends CI_Model
     }
     public function saveEditBuku($id, $newjudul, $newtipe, $newpenulis, $newpenerbit, $newisbn, $newharga, $newketerangan, $newimage, $newyear)
     {
-        $this->db->query("UPDATE [dbo].[Book] SET Judul='$newjudul',Tipe='$newtipe',Penulis='$newpenulis',Penerbit='$newpenerbit',ISBN='$newisbn',Harga='$newharga',Keterangan='$newketerangan',Image='$newimage',Year='$newyear' WHERE ID='$id'");
+        $this->db->query("UPDATE [dbo].[Book] SET Judul='$newjudul',id_tipe='$newtipe',Penulis='$newpenulis',Penerbit='$newpenerbit',ISBN='$newisbn',Harga='$newharga',Keterangan='$newketerangan',Image='$newimage',Year='$newyear' WHERE ID='$id'");
     }
     public function deleteUser($id)
     {
@@ -39,7 +44,7 @@ class admin_model extends CI_Model
     }
     public function addBuku($judul, $tipe, $penulis, $penerbit, $isbn, $harga, $keterangan, $image, $year)
     {
-        $this->db->query("INSERT INTO [dbo].[Book](Judul,Tipe,Penulis,Penerbit,ISBN,Harga,Keterangan,Image,Year) VALUES ('$judul','$tipe','$penulis','$penerbit','$isbn','$harga','$keterangan','$image','$year')");
+        $this->db->query("INSERT INTO [dbo].[Book](Judul,id_tipe,Penulis,Penerbit,ISBN,Harga,Keterangan,Image,Year) VALUES ('$judul','$tipe','$penulis','$penerbit','$isbn','$harga','$keterangan','$image','$year')");
     }
     public function deleteImage($id)
     {

@@ -41,6 +41,7 @@ class Admin extends CI_Controller
             $data['username'] = $this->session->userdata('username');
             $data['listbuku'] = $this->admin_model->getBuku();
             $data['listuser'] = $this->admin_model->getUser();
+            $data['listtipe'] = $this->admin_model->getTipeBuku();
             $this->load->view('admin/daftarbuku', $data);
         }
     }
@@ -90,6 +91,7 @@ class Admin extends CI_Controller
     }
     public function SaveeditBuku()
     {
+        $datasama = false;
         $editid = $this->input->post('editid');
         $editjudul = $this->input->post('editjudul');
         $edittipe = $this->input->post('edittipe');
@@ -132,6 +134,7 @@ class Admin extends CI_Controller
     }
     public function Adduser()
     {
+        $datasama = false;
         $tambahusername = $this->input->post('tambahusername');
         $tambahemail = $this->input->post('tambahemail');
         $tambahpassword = $this->input->post('tambahpassword');
@@ -174,6 +177,7 @@ class Admin extends CI_Controller
     }
     public function Addbuku()
     {
+        $databukusama = false;
         $tambahisbn = $this->input->post('tambahisbn');
         $bukucheck = $this->admin_model->getBuku();
         $countbuku = count($bukucheck);
