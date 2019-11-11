@@ -57,21 +57,23 @@
             <?php }
             $count = count($listbuku); ?>
             <!-- Dropdown - Alerts -->
-            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                <h6 class="dropdown-header">
-                    Buku baru
-                </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="<?php echo base_url('upload/book/' . $listbuku[$count - 1]["Image"]) ?>" width="64" />
-                    </div>
-                    <div>
-                        <div class="small text-gray-500"><?php echo $listbuku[$count - 1]["Year"] ?></div>
-                        <span class="font-weight-bold"><?php echo $listbuku[$count - 1]["Judul"] ?></span>
-                    </div>
-                </a>
-                <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Daftarbuku') ?>">Tampilkan seluruh buku</a>
-            </div>
+            <?php if ($count != 0) { ?>
+                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
+                    <h6 class="dropdown-header">
+                        Buku baru
+                    </h6>
+                    <a class="dropdown-item d-flex align-items-center" href="#">
+                        <div class="dropdown-list-image mr-3">
+                            <img class="rounded-circle" src="<?php echo base_url('upload/book/' . $listbuku[$count - 1]["Image"]) ?>" width="64" />
+                        </div>
+                        <div>
+                            <div class="small text-gray-500"><?php echo $listbuku[$count - 1]["Year"] ?></div>
+                            <span class="font-weight-bold"><?php echo $listbuku[$count - 1]["Judul"] ?></span>
+                        </div>
+                    </a>
+                    <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Daftarbuku') ?>">Tampilkan seluruh buku</a>
+                </div>
+            <?php } ?>
         </li>
 
         <!-- Nav Item - Messages -->
