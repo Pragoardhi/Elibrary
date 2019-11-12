@@ -48,7 +48,7 @@
             <?php
               $count  = count($listUser);
               for ($i = 0; $i < $count; $i++) {
-                    echo '<tr>';
+                    echo '<tr role="row" class="odd">';
                     echo '<td>'. $i .'</td>';
             ?>
             <td><img src="<?php echo base_url('upload/user/' . $listUser[$i]["image"]) ?>"/></td>
