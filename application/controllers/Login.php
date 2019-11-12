@@ -46,6 +46,9 @@ class Login extends CI_Controller
     }
     public function logout()
     {
+        $id =  $this->session->userdata('id');
+        $this->load->model('login_model');
+        $this->login_model->logOut($id);
         $this->session->sess_destroy();
         redirect(base_url('Login'));
     }

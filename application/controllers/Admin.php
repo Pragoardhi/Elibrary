@@ -45,6 +45,14 @@ class Admin extends CI_Controller
             $this->load->view('admin/daftarbuku', $data);
         }
     }
+    public function Tipebuku()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['listbuku'] = $this->admin_model->getBuku();
+        $data['listuser'] = $this->admin_model->getUser();
+        $data["listtipe"] = $this->admin_model->getTipeBuku();
+        $this->load->view("admin/tipebuku", $data);
+    }
     public function Saveedit()
     {
         $datasama = false;
@@ -101,7 +109,6 @@ class Admin extends CI_Controller
         $editharga = $this->input->post('editharga');
         $editketerangan = $this->input->post('editketerangan');
         $edittahun = $this->input->post('edittahun');
-        $datasama = false;
         $datacheck = ($this->db->query("SELECT * FROM [dbo].[Book] WHERE NOT ID='$editid'"))->result_array();
         $count = count($datacheck);
         for ($i = 0; $i < $count; $i++) {
@@ -130,6 +137,27 @@ class Admin extends CI_Controller
             $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
             $this->admin_model->saveEditBuku($editid, $editjudul, $edittipe, $editpenulis, $editpenerbit, $editisbn, $editharga, $editketerangan, $editimage, $edittahun);
             redirect(base_url('Admin/Daftarbuku'));
+        }
+    }
+    public function SaveeditTipe()
+    {
+        $datasama = false;
+        $editid = $this->input->post('editid');
+        $edittipe = $this->input->post('edittipe');
+        $datacheck = ($this->db->query("SELECT * FROM [dbo].[Tipe_Book] WHERE NOT id='$editid'"))->result_array();
+        $count = count($datacheck);
+        for ($i = 0; $i < $count; $i++) {
+            if ($datacheck[$i]["Tipe"] == $edittipe) {
+                $datasama = true;
+            }
+        }
+        if ($datasama) {
+            $this->session->set_flashdata('datatipeada', "Tipe buku telah terdaftar");
+            redirect(base_url('Admin/Tipebuku'));
+        } else {
+            $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
+            $this->admin_model->saveEditTipe($editid, $edittipe);
+            redirect(base_url('Admin/Tipebuku'));
         }
     }
     public function Adduser()
@@ -224,6 +252,27 @@ class Admin extends CI_Controller
             redirect(base_url('Admin/Daftarbuku'));
         }
     }
+    public function Addtipe()
+    {
+        $datasama = false;
+        $tambahid = $this->input->post('tambahid');
+        $tambahtipe = $this->input->post('tambahtipe');
+        $datacheck = ($this->db->query("SELECT * FROM [dbo].[Tipe_Book]"))->result_array();
+        $count = count($datacheck);
+        for ($i = 0; $i < $count; $i++) {
+            if ($datacheck[$i]["Tipe"] == $tambahtipe) {
+                $datasama = true;
+            }
+        }
+        if ($datasama) {
+            $this->session->set_flashdata('datatipeada', "Tipe buku telah terdaftar");
+            redirect(base_url('Admin/Tipebuku'));
+        } else {
+            $this->session->set_flashdata('databerhasil', "Data telah berhasil ditambahkan");
+            $this->admin_model->addTipe($tambahtipe);
+            redirect(base_url('Admin/Tipebuku'));
+        }
+    }
     public function Deleteuser()
     {
         $id = $this->uri->segment(3);
@@ -235,5 +284,11 @@ class Admin extends CI_Controller
         $id = $this->uri->segment(3);
         $this->admin_model->Deletebuku($id);
         redirect(base_url('Admin/Daftarbuku'));
+    }
+    public function Deletetipe()
+    {
+        $id = $this->uri->segment(3);
+        $this->admin_model->Deletetipe($id);
+        redirect(base_url('Admin/Daftartipe'));
     }
 }

@@ -28,6 +28,10 @@ class admin_model extends CI_Model
     {
         $this->db->query("UPDATE [dbo].[Book] SET Judul='$newjudul',id_tipe='$newtipe',Penulis='$newpenulis',Penerbit='$newpenerbit',ISBN='$newisbn',Harga='$newharga',Keterangan='$newketerangan',Image='$newimage',Year='$newyear' WHERE ID='$id'");
     }
+    public function saveEditTipe($id, $tipe)
+    {
+        $this->db->query("UPDATE [dbo].[Tipe_book] SET Tipe='$tipe' WHERE id='$id'");
+    }
     public function deleteUser($id)
     {
         $this->deleteImageuser($id);
@@ -38,6 +42,12 @@ class admin_model extends CI_Model
         $this->deleteImage($id);
         $this->db->query("DELETE FROM [dbo].[Book] WHERE id='$id'");
     }
+    public function deleteTipe($id)
+    {
+        $data = $this->getTipeBuku();
+        $count = count($data);
+        $this->db->query("DELETE FROM [dbo].[Tipe_book] WHERE id='$id'");
+    }
     public function addUser($addusername, $addemail, $addstatus, $addpassword, $profile)
     {
         $this->db->query("INSERT INTO [dbo].[User](email,pass,status,username,image) VALUES ('$addemail','$addpassword','$addstatus','$addusername','$profile')");
@@ -45,6 +55,10 @@ class admin_model extends CI_Model
     public function addBuku($judul, $tipe, $penulis, $penerbit, $isbn, $harga, $keterangan, $image, $year)
     {
         $this->db->query("INSERT INTO [dbo].[Book](Judul,id_tipe,Penulis,Penerbit,ISBN,Harga,Keterangan,Image,Year) VALUES ('$judul','$tipe','$penulis','$penerbit','$isbn','$harga','$keterangan','$image','$year')");
+    }
+    public function addTipe($tipe)
+    {
+        $this->db->query("INSERT INTO [dbo].[Tipe_book](Tipe) VALUES('$tipe')");
     }
     public function deleteImage($id)
     {
