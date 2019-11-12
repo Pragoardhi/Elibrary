@@ -51,7 +51,7 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                            Echo var_dump($listPeminjaman);
+           
                                             $count  = count($listPeminjaman);
                                             if($count == 0){
                                                 echo '<tr>

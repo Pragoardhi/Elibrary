@@ -49,7 +49,8 @@ class Home extends CI_Controller
             $data['statususer'] = $this->session->userdata('statususer');
             $data['username'] = $this->session->userdata('username');
             $data['id'] = $this->session->userdata('id');
-            $data['listPeminjaman'] = $this->katalog_buku->getPeminjaman();
+            $pinjamIdUser = $this->session->userdata('id');
+            $data['listPeminjaman'] = $this->katalog_buku->getPeminjaman($pinjamIdUser);
             $data['listBuku'] = $this->katalog_buku->getBook();
             $this->load->view('navbar/transaksiUser_page', $data);
         }
