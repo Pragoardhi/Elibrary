@@ -95,6 +95,7 @@
                       <th>Username</th>
                       <th>Email</th>
                       <th>Status</th>
+                      <th>Active</th>
                       <th>Action</th>
                     </tr>
                   </thead>
@@ -105,6 +106,7 @@
                       <th>Username</th>
                       <th>Email</th>
                       <th>Status</th>
+                      <th>Active</th>
                       <th>Action</th>
                     </tr>
                   </tfoot>
@@ -128,6 +130,13 @@
                           echo '<td> User </td>';
                         }
                         ?>
+                      <td style="text-align: center">
+                        <?php if ($listuser[$i]["active"] == 1) { ?>
+                          <span class="dot" style="height: 20px;width: 20px;background-color: green;border-radius: 50%;display: inline-block;"></span>
+                        <?php } else { ?>
+                          <span class="dot" style="height: 20px;width: 20px;background-color: red;border-radius: 50%;display: inline-block;"></span>
+                        <?php } ?>
+                      </td>
                       <td>
                         <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
                         <?php
@@ -190,7 +199,7 @@
                                   <div class="form-group">
                                     <label class="control-label">Password lama</label>
                                     <div class="inputGroupContainer">
-                                      <div class="input-group"><span class="input-group-addon"></span><input id="oldpassword" name="oldpassword" placeholder="Password" class="form-control" required="true" value="" type="text"></div>
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="oldpassword" name="oldpassword" placeholder="Password" class="form-control" required="true" value="" type="password"></div>
                                     </div>
                                   </div>
                                   <div class="form-group">
@@ -328,24 +337,7 @@
       </div>
     </div>
   </div>
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="<?= base_url('/Login/logout') ?>">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <script src="<?php echo base_url('assets') ?>/vendor/jquery/jquery.min.js"></script>
   <script src="<?php echo base_url('assets') ?>/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

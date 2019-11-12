@@ -138,7 +138,7 @@
                                                 echo '<td>' . $listbuku[$i]["Year"] . '</td>';
                                                 ?>
 
-                                            <td>
+                                            <td style="display: inline-block">
                                                 <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
                                                 <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $i; ?>"><i class="fas fa-trash"></i></button>
                                             </td>
@@ -173,7 +173,16 @@
                                                                     <div class="form-group">
                                                                         <label class="ontrol-label">Tipe</label>
                                                                         <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="edittipe" name="edittipe" placeholder="Tipe" class="form-control" required="true" value=""></div>
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"></span>
+                                                                                <!-- <input id="edittipe" name="edittipe" placeholder="Tipe" class="form-control" required="true" value=""> -->
+                                                                                <?php $counttipe = count($listtipe); ?>
+                                                                                <select id="edittipe" name="edittipe" class="form-control">
+                                                                                    <?php for ($j = 0; $j < $counttipe; $j++) { ?>
+                                                                                        <option value="<?php echo $listtipe[$j]["id"] ?>"><?php echo $listtipe[$j]["Tipe"] ?></option>
+                                                                                    <?php  } ?>
+                                                                                </select>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
@@ -208,6 +217,7 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="control-label">Cover buku</label>
+                                                                        <img class="img-thumbnail" id="imageedit" width="1020" />
                                                                         <div class="inputGroupContainer">
                                                                             <div class="input-group"><span class="input-group-addon"></span><input id="editgambar" name="editgambar" placeholder="Gambar" class="form-control-file" value="" type="file"></div>
                                                                         </div>
@@ -219,6 +229,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </fieldset>
+
+
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -309,7 +321,16 @@
                             <div class="form-group">
                                 <label class="control-label">Tipe</label>
                                 <div class="inputGroupContainer">
-                                    <div class="input-group"><span class="input-group-addon"></span><input id="tambahtipe" name="tambahtipe" placeholder="Tipe" class="form-control" required="true" value=""></div>
+                                    <div class="input-group">
+                                        <span class="input-group-addon"></span>
+                                        <!-- <input id="tambahtipe" name="tambahtipe" placeholder="Tipe" class="form-control" required="true" value=""> -->
+                                        <?php $count = count($listtipe); ?>
+                                        <select class="form-control" id="tambahtipe" name="tambahtipe">
+                                            <?php for ($i = 0; $i < $count; $i++) { ?>
+                                                <option value="<?php echo $listtipe[$i]["id"] ?>"><?php echo $listtipe[$i]["Tipe"] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
@@ -366,24 +387,7 @@
         </div>
     </div>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="<?= base_url('/Login/logout') ?>">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
     <script>
         document.getElementById("tambahgambar").onchange = function() {
             var reader = new FileReader();
@@ -392,23 +396,36 @@
                 // get loaded data and render thumbnail.
                 document.getElementById("imagetambah").src = e.target.result;
             };
-
             // read the image file as a data URL.
             reader.readAsDataURL(this.files[0]);
         }
     </script>
     <script>
-        var harga = document.getElementById("tambahharga");
+        document.getElementById("editgambar").onchange = function() {
+            var readeredit = new FileReader();
 
-        function validateHarga() {
-            if (harga.value < 0) {
-                harga.setCustomValidity("Harga tidak boleh dibawah 0");
+            readeredit.onload = function(e) {
+                // get loaded data and render thumbnail.
+                document.getElementById("imageedit").src = e.target.result;
+            };
+            // read the image file as a data URL.
+            readeredit.readAsDataURL(this.files[0]);
+        }
+    </script>
+    <script>
+        var hargatambah = document.getElementById("tambahharga");
+
+        function validateHargaTambah() {
+            if (hargatambah.value < 0) {
+                hargatambah.setCustomValidity("Harga tidak boleh dibawah 0");
+            } else if (hargatambah.value > 9999999999) {
+                hargatambah.setCustomValidity("Harga terlalu tinggi");
             } else {
-                harga.setCustomValidity('');
+                hargatambah.setCustomValidity('');
             }
         }
-        harga.onkeyup = validateHarga;
-        harga.onchange = validateHarga;
+        hargatambah.onkeyup = validateHargaTambah;
+        hargatambah.onchange = validateHargaTambah;
     </script>
     <script>
         var harga = document.getElementById("editharga");
@@ -416,6 +433,8 @@
         function validateHarga() {
             if (harga.value < 0) {
                 harga.setCustomValidity("Harga tidak boleh dibawah 0");
+            } else if (harga.value > 9999999999) {
+                harga.setCustomValidity("Harga terlalu tinggi");
             } else {
                 harga.setCustomValidity('');
             }
