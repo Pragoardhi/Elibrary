@@ -112,7 +112,12 @@
                                 }
                             }
                             if($param == true){?>
-                                <button disabled="disabled" class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                                <button class="btn btn-dark" id="pnjbtn" type="button" onclick="alertku()"> <i class="fas fa-edit"></i>Pinjam</button>
+                                <script>
+                                    function alertku() {
+                                      alert("Buku sudah dipinjam!!!");
+                                    }
+                                </script>
                             <?php } else {?>
                                 <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
                             <?php } ?>
