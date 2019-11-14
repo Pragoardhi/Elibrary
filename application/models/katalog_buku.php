@@ -10,9 +10,9 @@ class katalog_buku extends CI_Model
         return $data->result_array();
     }
 
-    public function addPeminjaman($idUser, $idBook, $tglPeminjaman, $tglPengembalian)
+    public function addPeminjaman($idUser, $idBook, $tglPeminjaman, $tglPengembalian, $notifikasi)
     {
-        $this->db->query("INSERT INTO [dbo].[Peminjaman](id, ID_Buku, Tgl_Peminjaman, Tgl_Pengembalian) VALUES ('$idUser', '$idBook', '$tglPeminjaman', '$tglPengembalian')");
+        $this->db->query("INSERT INTO [dbo].[Peminjaman](id, ID_Buku, Tgl_Peminjaman, Tgl_Pengembalian,Notifikasi) VALUES ('$idUser', '$idBook', '$tglPeminjaman', '$tglPengembalian','$notifikasi')");
     }
 
     public function getPeminjaman($id)

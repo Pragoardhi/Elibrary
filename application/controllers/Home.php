@@ -7,7 +7,6 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('katalog_buku');
-        
     }
     public function index()
     {
@@ -100,12 +99,14 @@ class Home extends CI_Controller
         }
     }
 
-    public function addPinjam(){
+    public function addPinjam()
+    {
         $pinjamIdUser = $this->session->userdata('id');
         $pinjamIdBook = $this->uri->segment(3);
         $pinjamTglBook = $this->input->post('tglPnj');
         $kembaliTglBook = date('Y-m-d', strtotime('+7 days', strtotime($pinjamTglBook)));
-        $this->katalog_buku->addPeminjaman($pinjamIdUser, $pinjamIdBook, $pinjamTglBook, $kembaliTglBook);
+        $notifikasi = 1;
+        $this->katalog_buku->addPeminjaman($pinjamIdUser, $pinjamIdBook, $pinjamTglBook, $kembaliTglBook, $notifikasi);
         redirect(base_url('Home/TransaksiUser'));
         // echo "<div><p> $PinjamIdUser </p></div>";
         // echo "<div><p> $pinjamTglBook </p></div>";
