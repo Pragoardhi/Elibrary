@@ -31,6 +31,7 @@ class Admin extends CI_Controller
             $data['username'] = $this->session->userdata('username');
             $data['listuser'] = $this->admin_model->getUser();
             $data['listbuku'] = $this->admin_model->getBuku();
+            $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
             $this->load->view('admin/daftarpengguna', $data);
         }
     }
@@ -44,6 +45,7 @@ class Admin extends CI_Controller
             $data['listuser'] = $this->admin_model->getUser();
             $data['listtipe'] = $this->admin_model->getTipeBuku();
             $data['listbahasa'] = $this->admin_model->getBahasaBuku();
+            $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
             $this->load->view('admin/daftarbuku', $data);
         }
     }
@@ -53,6 +55,7 @@ class Admin extends CI_Controller
         $data['listbuku'] = $this->admin_model->getBuku();
         $data['listuser'] = $this->admin_model->getUser();
         $data["listtipe"] = $this->admin_model->getTipeBuku();
+        $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
         $this->load->view("admin/tipebuku", $data);
     }
     public function Transaksibuku()
@@ -310,6 +313,7 @@ class Admin extends CI_Controller
         $data['listbuku'] = $this->admin_model->getBuku();
         $data['listuser'] = $this->admin_model->getUser();
         $data['listtipe'] = $this->admin_model->getTipeBuku();
+        $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
         $data['detailuser'] = $this->admin_model->getDetailUser($nama);
 
         $this->load->view('admin/detailuser', $data);
@@ -322,6 +326,7 @@ class Admin extends CI_Controller
         $data['listuser'] = $this->admin_model->getUser();
         $data['listtipe'] = $this->admin_model->getTipeBuku();
         $data['listbahasa'] = $this->admin_model->getBahasaBuku();
+        $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
         $data['detailbuku'] = $this->admin_model->getDetailBuku($judul);
 
         $this->load->view('admin/detailbuku', $data);

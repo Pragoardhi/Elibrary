@@ -3,6 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class admin_model extends CI_Model
 {
+    public function insertNotifikasiTransaksi($id)
+    {
+        $this->db->query("UPDATE [dbo].[Peminjaman] SET Notifikasi = 0 WHERE ID_Peminjaman = $id");
+    }
     public function getTransaksibuku()
     {
         $data = $this->db->query("SELECT [dbo].[Peminjaman].ID_Peminjaman, [dbo].[User].username, [dbo].[Book].Judul,[dbo].[Peminjaman].Tgl_Peminjaman,[dbo].[Peminjaman].Tgl_Pengembalian FROM dbo.Peminjaman INNER JOIN [dbo].[User] ON [dbo].[Peminjaman].id = [dbo].[User].id INNER JOIN [dbo].[Book] ON [dbo].[Peminjaman].ID_Buku = [dbo].[Book].ID");
