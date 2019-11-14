@@ -1,3 +1,4 @@
+<?php $this->load->model('admin_model') ?>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -42,7 +43,7 @@
 
         <!-- Nav Item - Alerts -->
         <li class="nav-item dropdown no-arrow mx-1">
-            <?php if ($this->session->flashdata('notifbuku') == "true") { ?>
+            <?php if ($this->admin_model->checkNotifikasi() != NULL) { ?>
                 <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-book fa-fw"></i>
                     <!-- Counter - Alerts -->
@@ -134,20 +135,23 @@
                 <h6 class="dropdown-header">
                     Transaksi baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="<?= base_url('Admin/Transaksibuku') ?>" id="Transaksi<?php echo $counttransaksi - 1 ?>">
-                    <script>
-                        document.getElementById("Transaksi<?php echo $counttransaksi - 1 ?>").onclick = function() {
-                            <?php $this->load->model('admin_model');
-                            $this->admin_model->insertNotifikasiTransaksi($listtransaksi[$counttransaksi - 1]["ID_Peminjaman"]);
-                            ?>
-                        }
-                    </script>
-
-                    <div class="font-weight-bold">
-                        <div class="text-capitalize"><?php echo $listtransaksi[$counttransaksi - 1]["Judul"] ?></div>
-                        <div class="small text-gray-500">Dipinjam oleh: <?php echo $listtransaksi[$counttransaksi - 1]["username"] ?></div>
-                    </div>
-                </a>
+                <?php for ($hitung = 0; $hitung < $counttransaksi; $hitung++) {
+                    if ($listtransaksi[(($counttransaksi - 1) - $hitung)]["Notifikasi"] == false) {
+                        ?>
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url('Admin/Transaksibuku') ?>" id="Transaksi<?php echo (($counttransaksi - 1) - $hitung) ?>">
+                            <script>
+                                document.getElementById("Transaksi<?php echo (($counttransaksi - 1) - $hitung) ?>").onclick = function() {
+                                    <?php $this->admin_model->insertNotifikasiTransaksi($listtransaksi[(($counttransaksi - 1) - $hitung)]["ID_Peminjaman"]);
+                                            ?>
+                                }
+                            </script>
+                            <div class="font-weight-bold">
+                                <div class="text-capitalize"><?php echo $listtransaksi[(($counttransaksi - 1) - $hitung)]["Judul"] ?></div>
+                                <div class="small text-gray-500">Dipinjam oleh: <?php echo $listtransaksi[(($counttransaksi - 1) - $hitung)]["username"] ?></div>
+                            </div>
+                        </a>
+                <?php }
+                } ?>
                 <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Transaksibuku') ?>">Tampilkan seluruh transaksi</a>
             </div>
         </li>
