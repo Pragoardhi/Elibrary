@@ -19,7 +19,7 @@ class Login extends CI_Controller
     public function login()
     {
         $email = $this->input->post('email');
-        $password = $this->input->post('password');
+        $password = md5($this->input->post('password'));
         $check = $this->login_model->login($email, $password);
         $username = $this->login_model->getUsername($email, $password);
         $id = $this->login_model->getId($email, $password);

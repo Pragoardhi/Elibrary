@@ -19,6 +19,7 @@ class Admin extends CI_Controller
             $data['totalbuku'] = $this->admin_model->getBuku();
             $data['listuser'] = $this->admin_model->getUser();
             $data['listbuku'] = $this->admin_model->getBuku();
+            $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -42,6 +43,7 @@ class Admin extends CI_Controller
             $data['listbuku'] = $this->admin_model->getBuku();
             $data['listuser'] = $this->admin_model->getUser();
             $data['listtipe'] = $this->admin_model->getTipeBuku();
+            $data['listbahasa'] = $this->admin_model->getBahasaBuku();
             $this->load->view('admin/daftarbuku', $data);
         }
     }
@@ -53,14 +55,23 @@ class Admin extends CI_Controller
         $data["listtipe"] = $this->admin_model->getTipeBuku();
         $this->load->view("admin/tipebuku", $data);
     }
+    public function Transaksibuku()
+    {
+        $data['username'] = $this->session->userdata('username');
+        $data['listbuku'] = $this->admin_model->getBuku();
+        $data['listuser'] = $this->admin_model->getUser();
+        $data['listtipe'] = $this->admin_model->getTipeBuku();
+        $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
+        $this->load->view("admin/transaksibuku", $data);
+    }
     public function Saveedit()
     {
         $datasama = false;
         $editid = $this->input->post('editid');
         $editusername = $this->input->post('editusername');
         $editemail = $this->input->post('editemail');
-        $oldpassword = $this->input->post('oldpassword');
-        $editpassword = $this->input->post('editoldpassword');
+        $oldpassword = md5($this->input->post('oldpassword'));
+        $editpassword = md5($this->input->post('editoldpassword'));
         $passwordcheck = ($this->db->query("SELECT * FROM [dbo].[User] WHERE id='$editid'"))->result_array();
         if ($passwordcheck[0]["pass"] != $oldpassword) {
             $this->session->set_flashdata('dataada', "password tidak sesuai");
@@ -109,6 +120,7 @@ class Admin extends CI_Controller
         $editharga = $this->input->post('editharga');
         $editketerangan = $this->input->post('editketerangan');
         $edittahun = $this->input->post('edittahun');
+        $editbahasa = $this->input->post('editbahasa');
         $datacheck = ($this->db->query("SELECT * FROM [dbo].[Book] WHERE NOT ID='$editid'"))->result_array();
         $count = count($datacheck);
         for ($i = 0; $i < $count; $i++) {
@@ -135,7 +147,7 @@ class Admin extends CI_Controller
                 $editimage = "default.jpg";
             }
             $this->session->set_flashdata('databerhasil', "data telah berhasil diubah");
-            $this->admin_model->saveEditBuku($editid, $editjudul, $edittipe, $editpenulis, $editpenerbit, $editisbn, $editharga, $editketerangan, $editimage, $edittahun);
+            $this->admin_model->saveEditBuku($editid, $editjudul, $edittipe, $editpenulis, $editpenerbit, $editisbn, $editharga, $editketerangan, $editimage, $edittahun, $editbahasa);
             redirect(base_url('Admin/Daftarbuku'));
         }
     }
@@ -165,7 +177,7 @@ class Admin extends CI_Controller
         $datasama = false;
         $tambahusername = $this->input->post('tambahusername');
         $tambahemail = $this->input->post('tambahemail');
-        $tambahpassword = $this->input->post('tambahpassword');
+        $tambahpassword = md5($this->input->post('tambahpassword'));
         $datacheck = $this->admin_model->getUser();
         $count = count($datacheck);
         for ($i = 0; $i < $count; $i++) {
@@ -227,7 +239,7 @@ class Admin extends CI_Controller
             $tambahpenerbit = $this->input->post('tambahpenerbit');
             $tambahharga = $this->input->post('tambahharga');
             $tambahketerangan = $this->input->post('tambahketerangan');
-
+            $tambahbahasa = $this->input->post('tambahbahasa');
             //dapetin last increment di table dbo.book
             $databuku = $this->db->query("SELECT IDENT_CURRENT('[dbo].[Book]')")->result_array();
 
@@ -247,7 +259,7 @@ class Admin extends CI_Controller
                 $tambahgambar = "default.jpg";
             }
             $tambahtahun = $this->input->post('tambahtahun');
-            $this->admin_model->addBuku($tambahjudul, $tambahtipe, $tambahpenulis, $tambahpenerbit, $tambahisbn, $tambahharga, $tambahketerangan, $tambahgambar, $tambahtahun);
+            $this->admin_model->addBuku($tambahjudul, $tambahtipe, $tambahpenulis, $tambahpenerbit, $tambahisbn, $tambahharga, $tambahketerangan, $tambahgambar, $tambahtahun, $tambahbahasa);
             $this->session->set_flashdata('notifbuku', 'true');
             redirect(base_url('Admin/Daftarbuku'));
         }
@@ -290,5 +302,28 @@ class Admin extends CI_Controller
         $id = $this->uri->segment(3);
         $this->admin_model->Deletetipe($id);
         redirect(base_url('Admin/Daftartipe'));
+    }
+    public function Detailuser()
+    {
+        $nama = $this->uri->segment(3);
+        $data['username'] = $this->session->userdata('username');
+        $data['listbuku'] = $this->admin_model->getBuku();
+        $data['listuser'] = $this->admin_model->getUser();
+        $data['listtipe'] = $this->admin_model->getTipeBuku();
+        $data['detailuser'] = $this->admin_model->getDetailUser($nama);
+
+        $this->load->view('admin/detailuser', $data);
+    }
+    public function Detailbuku()
+    {
+        $judul = $this->uri->segment(3);
+        $data['username'] = $this->session->userdata('username');
+        $data['listbuku'] = $this->admin_model->getBuku();
+        $data['listuser'] = $this->admin_model->getUser();
+        $data['listtipe'] = $this->admin_model->getTipeBuku();
+        $data['listbahasa'] = $this->admin_model->getBahasaBuku();
+        $data['detailbuku'] = $this->admin_model->getDetailBuku($judul);
+
+        $this->load->view('admin/detailbuku', $data);
     }
 }

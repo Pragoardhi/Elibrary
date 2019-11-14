@@ -62,7 +62,7 @@
                     <h6 class="dropdown-header">
                         Buku baru
                     </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
+                    <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>Admin/Detailbuku/<?php echo $listbuku[$count - 1]["Judul"] ?>">
                         <div class="dropdown-list-image mr-3">
                             <img class="rounded-circle" src="<?php echo base_url('upload/book/' . $listbuku[$count - 1]["Image"]) ?>" width="64" />
                         </div>

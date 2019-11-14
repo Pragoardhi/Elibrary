@@ -88,14 +88,10 @@
                                     <thead>
                                         <tr>
                                             <th>No</th>
+                                            <th>Cover</th>
                                             <th>Judul</th>
                                             <th>Tipe</th>
-                                            <th>Penulis</th>
-                                            <th>Penerbit</th>
-                                            <th>ISBN</th>
-                                            <th>Harga</th>
-                                            <th>Keterangan</th>
-                                            <th>Image</th>
+
                                             <th>Tahun</th>
                                             <th>Action</th>
                                         </tr>
@@ -103,14 +99,10 @@
                                     <tfoot>
                                         <tr>
                                             <th>No</th>
+                                            <th>Cover</th>
                                             <th>Judul</th>
                                             <th>Tipe</th>
-                                            <th>Penulis</th>
-                                            <th>Penerbit</th>
-                                            <th>ISBN</th>
-                                            <th>Harga</th>
-                                            <th>Keterangan</th>
-                                            <th>Image</th>
+
                                             <th>Tahun</th>
                                             <th>Action</th>
                                         </tr>
@@ -123,23 +115,23 @@
                                             $number = $i + 1;
                                             echo '<tr>';
                                             echo '<td>' . $number . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Judul"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Tipe"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Penulis"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Penerbit"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["ISBN"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Harga"] . '</td>';
-                                            echo '<td>' . $listbuku[$i]["Keterangan"] . '</td>';
                                             ?>
                                             <td>
                                                 <img src="<?php echo base_url('upload/book/' . $listbuku[$i]["Image"]) ?>" width="64" />
                                             </td>
+                                            <?php
+                                                echo '<td>' . $listbuku[$i]["Judul"] . '</td>';
+                                                echo '<td>' . $listbuku[$i]["Tipe"] . '</td>';
+
+                                                ?>
+
                                             <?php
                                                 echo '<td>' . $listbuku[$i]["Year"] . '</td>';
                                                 ?>
 
                                             <td style="display: inline-block">
                                                 <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
+                                                <button class="btn btn-primary" onclick="location.href='<?= base_url() ?>Admin/Detailbuku/<?php echo $listbuku[$i]["Judul"] ?>'"><i class="fas fa-align-justify"></i></button>
                                                 <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $i; ?>"><i class="fas fa-trash"></i></button>
                                             </td>
                                             </tr>
@@ -186,6 +178,21 @@
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">
+                                                                        <label class="ontrol-label">Bahasa</label>
+                                                                        <div class="inputGroupContainer">
+                                                                            <div class="input-group">
+                                                                                <span class="input-group-addon"></span>
+                                                                                <!-- <input id="edittipe" name="edittipe" placeholder="Tipe" class="form-control" required="true" value=""> -->
+                                                                                <?php $countbahasa = count($listbahasa); ?>
+                                                                                <select id="editbahasa" name="editbahasa" class="form-control">
+                                                                                    <?php for ($j = 0; $j < $countbahasa; $j++) { ?>
+                                                                                        <option value="<?php echo $listbahasa[$j]["id"] ?>"><?php echo $listbahasa[$j]["bahasa"] ?></option>
+                                                                                    <?php  } ?>
+                                                                                </select>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group">
                                                                         <label class="ontrol-label">Penulis</label>
                                                                         <div class="inputGroupContainer">
                                                                             <div class="input-group"><span class="input-group-addon"></span><input id="editpenulis" name="editpenulis" placeholder="Penulis" class="form-control" required="true" value=""></div>
@@ -217,11 +224,23 @@
                                                                     </div>
                                                                     <div class="form-group">
                                                                         <label class="control-label">Cover buku</label>
-                                                                        <img class="img-thumbnail" id="imageedit" width="1020" />
+                                                                        <img class="img-thumbnail" id="imageedit<?php echo $i ?>" width="1020" />
                                                                         <div class="inputGroupContainer">
-                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="editgambar" name="editgambar" placeholder="Gambar" class="form-control-file" value="" type="file"></div>
+                                                                            <div class="input-group"><span class="input-group-addon"></span><input id="editgambar<?php echo $i ?>" name="editgambar" placeholder="Gambar" class="form-control-file" value="" type="file"></div>
                                                                         </div>
                                                                     </div>
+                                                                    <script>
+                                                                        document.getElementById("editgambar<?php echo $i ?>").onchange = function() {
+                                                                            var readeredit = new FileReader();
+
+                                                                            readeredit.onload = function(e) {
+                                                                                // get loaded data and render thumbnail.
+                                                                                document.getElementById("imageedit<?php echo $i ?>").src = e.target.result;
+                                                                            };
+                                                                            // read the image file as a data URL.
+                                                                            readeredit.readAsDataURL(this.files[0]);
+                                                                        }
+                                                                    </script>
                                                                     <div class="form-group">
                                                                         <label class="control-label">Tahun</label>
                                                                         <div class="inputGroupContainer">
@@ -334,6 +353,22 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="control-label">Bahasa</label>
+                                <div class="inputGroupContainer">
+                                    <div class="input-group">
+                                        <span class="input-group-addon"></span>
+                                        <!-- <input id="tambahtipe" name="tambahtipe" placeholder="Tipe" class="form-control" required="true" value=""> -->
+                                        <?php $count = count($listbahasa);
+                                        ?>
+                                        <select class="form-control" id="tambahbahasa" name="tambahbahasa">
+                                            <?php for ($i = 0; $i < $count; $i++) { ?>
+                                                <option value="<?php echo $listbahasa[$i]["id"] ?>"><?php echo $listbahasa[$i]["bahasa"] ?></option>
+                                            <?php } ?>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="control-label">Penulis</label>
                                 <div class="inputGroupContainer">
                                     <div class="input-group"><span class="input-group-addon"></span><input id="tambahpenulis" name="tambahpenulis" placeholder="Penulis" class="form-control" required="true"></div>
@@ -401,18 +436,6 @@
         }
     </script>
     <script>
-        document.getElementById("editgambar").onchange = function() {
-            var readeredit = new FileReader();
-
-            readeredit.onload = function(e) {
-                // get loaded data and render thumbnail.
-                document.getElementById("imageedit").src = e.target.result;
-            };
-            // read the image file as a data URL.
-            readeredit.readAsDataURL(this.files[0]);
-        }
-    </script>
-    <script>
         var hargatambah = document.getElementById("tambahharga");
 
         function validateHargaTambah() {
@@ -476,14 +499,14 @@
                 buttons: [{
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 9]
+                            columns: [0, 2, 3, 4]
                         },
                         className: 'btn btn-success'
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3, 4, 5, 6, 7, 9]
+                            columns: [0, 2, 3, 4]
                         },
                         className: 'btn btn-danger'
                     }

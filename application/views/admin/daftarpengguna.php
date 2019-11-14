@@ -139,11 +139,13 @@
                       </td>
                       <td>
                         <button class="btn btn-secondary" id="edibtn" type="button" data-toggle="modal" data-target="#editModal<?php echo $i; ?>"> <i class="fas fa-edit"></i></button>
+                        <button class="btn btn-primary" onclick="location.href='<?= base_url() ?>Admin/Detailuser/<?php echo $listuser[$i]["username"] ?>'"><i class="fas fa-align-justify"></i></button>
                         <?php
                           if ($listuser[$i]["status"] == "-1") {
                             ?>
                           <button class="btn btn-danger" type="button" data-toggle="modal" data-target="#deleteModal<?php echo $i; ?>"><i class="fas fa-trash"></i></button>
                         <?php } ?>
+
                       </td>
                       </tr>
                       <!-- edit modal -->
@@ -192,9 +194,23 @@
                                   <div class="form-group">
                                     <label class="control-label">Foto Profile</label>
                                     <div class="inputGroupContainer">
-                                      <div class="input-group"><span class="input-group-addon"></span><input id="editprofile" name="editprofile" placeholder="Profile" class="form-control-file" value="" type="file"></div>
+                                      <img class="img-thumbnail" id="imageedit<?php echo $i ?>" width="1020" />
+                                      <div class="input-group"><span class="input-group-addon"></span><input id="editprofile<?php echo $i ?>" name="editprofile" placeholder="Profile" class="form-control-file" value="" type="file"></div>
                                     </div>
                                   </div>
+                                  <script>
+                                    document.getElementById("editprofile<?php echo $i ?>").onchange = function() {
+                                      var editreader = new FileReader();
+
+                                      editreader.onload = function(e) {
+                                        // get loaded data and render thumbnail.
+                                        document.getElementById("imageedit<?php echo $i ?>").src = e.target.result;
+                                      };
+
+                                      // read the image file as a data URL.
+                                      editreader.readAsDataURL(this.files[0]);
+                                    }
+                                  </script>
                                   <!-- password lama disimpan -->
                                   <div class="form-group">
                                     <label class="control-label">Password lama</label>
