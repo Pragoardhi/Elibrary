@@ -107,7 +107,7 @@
                             $countPem  = count($PemBooks);
                             $param = false;
                             for($j = 0; $j < $countPem; $j++){
-                                if($listBooks[$i]["ID"] == $PemBook[$j]["ID_Buku"]){
+                                if($listBooks[$i]["ID"] == $PemBooks[$j]["ID_Buku"]){
                                     $param = true;
                                 }
                             }
