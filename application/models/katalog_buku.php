@@ -21,4 +21,10 @@ class katalog_buku extends CI_Model
         // echo $data->result_array();
         return $data->result_array();
     }
+
+    public function getTipeBuku()
+    {
+        $data = $this->db->query("SELECT * FROM dbo.Tipe_book");
+        return $data->result_array();
+    }
 }
