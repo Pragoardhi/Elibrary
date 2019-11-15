@@ -61,10 +61,25 @@
                             echo '<h5>' . $listBooks[$i]["Judul"]   . '</h5>';
                             echo '<p>'  . $listBooks[$i]["Penulis"] . '</p>';
                             echo '<p>'  . $listBooks[$i]["Year"]    . '</p>';
-                    ?>
-                    <?php if ($this->session->userdata('statususer') == "login") { ?>
-                        <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
-                    <?php } else { ?>
+                            ?>
+                    <?php if ($this->session->userdata('statususer') == "login") { 
+                            $countPem  = count($PemBooks);
+                            $param = false;
+                            for($j = 0; $j < $countPem; $j++){
+                                if($listBooks[$i]["ID"] == $PemBooks[$j]["ID_Buku"]){
+                                    $param = true;
+                                }
+                            }
+                            if($param == true){?>
+                                <button class="btn btn-dark" id="pnjbtn" type="button" onclick="alertku()"> <i class="fas fa-edit"></i>Pinjam</button>
+                                <script>
+                                    function alertku() {
+                                      alert("Buku sudah dipinjam!!!");
+                                    }
+                                </script>
+                            <?php } else {?>
+                                <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                            <?php } ?>
                         <?php
                             echo '<br>';
                         ?>

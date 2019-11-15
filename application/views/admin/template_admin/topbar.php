@@ -39,46 +39,51 @@
                 </form>
             </div>
         </li>
-
-        <!-- Nav Item - Alerts -->
+        <!-- Notifikasi buku -->
+        <!-- Nav Item - Messages -->
         <li class="nav-item dropdown no-arrow mx-1">
-            <?php if ($this->session->flashdata('notifbuku') == "true") { ?>
-                <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php if ($this->admin_model->checkNotifikasiBuku() == true) { ?>
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-book fa-fw"></i>
-                    <!-- Counter - Alerts -->
+                    <!-- Counter - Messages -->
                     <span class="badge badge-danger badge-counter">!</span>
                 </a>
             <?php
             } else { ?>
-                <a class="nav-link dropdown-toggle disabled" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-book fa-fw"></i>
-                    <!-- Counter - Alerts -->
+                    <!-- Counter - Messages -->
+
                 </a>
             <?php }
-            $count = count($listbuku); ?>
-            <!-- Dropdown - Alerts -->
-            <?php if ($count != 0) { ?>
-                <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
-                    <h6 class="dropdown-header">
-                        Buku baru
-                    </h6>
-                    <a class="dropdown-item d-flex align-items-center" href="#">
-                        <div class="dropdown-list-image mr-3">
-                            <img class="rounded-circle" src="<?php echo base_url('upload/book/' . $listbuku[$count - 1]["Image"]) ?>" width="64" />
-                        </div>
-                        <div>
-                            <div class="small text-gray-500"><?php echo $listbuku[$count - 1]["Year"] ?></div>
-                            <span class="font-weight-bold"><?php echo $listbuku[$count - 1]["Judul"] ?></span>
-                        </div>
-                    </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Daftarbuku') ?>">Tampilkan seluruh buku</a>
-                </div>
-            <?php } ?>
-        </li>
+            $countbuku = count($listbuku); ?>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                    Buku baru
+                </h6>
+                <?php for ($hitungbuku = 0; $hitungbuku < $countbuku; $hitungbuku++) {
+                    if ($listbuku[(($countbuku - 1) - $hitungbuku)]["Notifikasi"] == true) {
+                        ?>
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>Admin/Notifikasibuku/<?php echo $listbuku[(($countbuku - 1) - $hitungbuku)]["ID"] ?>">
 
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="<?php echo base_url('upload/book/' . $listbuku[(($countbuku - 1) - $hitungbuku)]["Image"]) ?>" width="64" />
+                            </div>
+                            <div>
+                                <div class="small text-gray-500"><?php echo $listbuku[(($countbuku - 1) - $hitungbuku)]["Year"] ?></div>
+                                <span class="font-weight-bold"><?php echo $listbuku[(($countbuku - 1) - $hitungbuku)]["Judul"] ?></span>
+                            </div>
+                        </a>
+                <?php }
+                } ?>
+                <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Daftarbuku') ?>">Tampilkan seluruh buku</a>
+            </div>
+        </li>
+        <!-- Notifikasi User -->
         <!-- Nav Item - Messages -->
         <li class="nav-item dropdown no-arrow mx-1">
-            <?php if ($this->session->flashdata('notifuser') == "true") { ?>
+            <?php if ($this->admin_model->checkNotifikasiUser() == true) { ?>
                 <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user fa-fw"></i>
                     <!-- Counter - Messages -->
@@ -86,7 +91,7 @@
                 </a>
             <?php
             } else { ?>
-                <a class="nav-link dropdown-toggle disabled" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <i class="fas fa-user fa-fw"></i>
                     <!-- Counter - Messages -->
 
@@ -98,17 +103,61 @@
                 <h6 class="dropdown-header">
                     Pengguna baru
                 </h6>
-                <a class="dropdown-item d-flex align-items-center" href="#">
-                    <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="<?php echo base_url('upload/user/' . $listuser[$countuser - 1]["image"]) ?>" alt="">
-                        <div class="status-indicator bg-success"></div>
-                    </div>
-                    <div class="font-weight-bold">
-                        <div class="text-capitalize"><?php echo $listuser[$countuser - 1]["username"] ?></div>
-                        <div class="small text-gray-500"><?php echo $listuser[$countuser - 1]["email"] ?></div>
-                    </div>
+                <?php for ($hitunguser = 0; $hitunguser < $countuser; $hitunguser++) {
+                    if ($listuser[(($countuser - 1) - $hitunguser)]["Notifikasi"] == true) {
+                        ?>
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>Admin/Notifikasiuser/<?php echo $listuser[(($countuser - 1) - $hitunguser)]["id"] ?>">
+
+                            <div class="dropdown-list-image mr-3">
+                                <img class="rounded-circle" src="<?php echo base_url('upload/user/' . $listuser[(($countuser - 1) - $hitunguser)]["image"]) ?>" alt="">
+                                <div class="status-indicator bg-success"></div>
+                            </div>
+                            <div class="font-weight-bold">
+                                <div class="text-capitalize"><?php echo $listuser[(($countuser - 1) - $hitunguser)]["username"] ?></div>
+                                <div class="small text-gray-500"><?php echo $listuser[(($countuser - 1) - $hitunguser)]["email"] ?></div>
+                            </div>
+                        </a>
+                <?php }
+                } ?>
+                <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Daftarpengguna') ?>">Tampilkan seluruh pengguna</a>
+            </div>
+        </li>
+        <!-- Notifikasi Transaski -->
+        <!-- Nav Item - Messages -->
+        <li class="nav-item dropdown no-arrow mx-1">
+            <?php if ($this->admin_model->checkNotifikasiTransaksi() == true) { ?>
+                <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- Counter - Messages -->
+                    <span class="badge badge-danger badge-counter">!</span>
                 </a>
-                <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Daftaruser') ?>">Tampilkan seluruh user</a>
+            <?php
+            } else { ?>
+                <a class="nav-link dropdown-toggle " href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-bell fa-fw"></i>
+                    <!-- Counter - Messages -->
+
+                </a>
+            <?php }
+            $counttransaksi = count($listtransaksi); ?>
+            <!-- Dropdown - Messages -->
+            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
+                <h6 class="dropdown-header">
+                    Transaksi baru
+                </h6>
+                <?php for ($hitung = 0; $hitung < $counttransaksi; $hitung++) {
+                    if ($listtransaksi[(($counttransaksi - 1) - $hitung)]["Notifikasi"] == true) {
+                        ?>
+                        <a class="dropdown-item d-flex align-items-center" href="<?= base_url() ?>Admin/Notifikasitransaksi/<?php echo $listtransaksi[(($counttransaksi - 1) - $hitung)]["ID_Peminjaman"] ?>">
+
+                            <div class="font-weight-bold">
+                                <div class="text-capitalize"><?php echo $listtransaksi[(($counttransaksi - 1) - $hitung)]["Judul"] ?></div>
+                                <div class="small text-gray-500">Dipinjam oleh: <?php echo $listtransaksi[(($counttransaksi - 1) - $hitung)]["username"] ?></div>
+                            </div>
+                        </a>
+                <?php }
+                } ?>
+                <a class="dropdown-item text-center small text-gray-500" href="<?= base_url('Admin/Transaksibuku') ?>">Tampilkan seluruh transaksi</a>
             </div>
         </li>
 

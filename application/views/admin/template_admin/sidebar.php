@@ -47,9 +47,9 @@
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="<?= base_url('Admin/Daftarbuku') ?>">Daftar Buku</a>
-                <a class="collapse-item" href="#">Transaksi Buku</a>
-                <a class="collapse-item" href="<?= base_url('Admin/Tipebuku') ?>">Tipe Buku</a>
+                <a id="Daftarbuku" class="collapse-item" href="<?= base_url('Admin/Daftarbuku') ?>">Daftar Buku</a>
+                <a id="Transaksibuku" class="collapse-item" href="<?= base_url('Admin/Transaksibuku') ?>">Transaksi Buku</a>
+                <a id="Tipebuku" class="collapse-item" href="<?= base_url('Admin/Tipebuku') ?>">Tipe Buku</a>
             </div>
         </div>
     </li>
