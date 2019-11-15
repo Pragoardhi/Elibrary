@@ -331,4 +331,25 @@ class Admin extends CI_Controller
 
         $this->load->view('admin/detailbuku', $data);
     }
+    public function Notifikasitransaksi()
+    {
+        $id = $this->uri->segment(3);
+        $this->admin_model->insertNotifikasiTransaksi($id);
+        redirect(base_url('Admin/transaksibuku'));
+    }
+
+    public function Notifikasiuser()
+    {
+        $id = $this->uri->segment(3);
+        $username = $this->admin_model->getUserNama($id);
+        $this->admin_model->insertNotifikasiUser($id);
+        redirect(base_url('Admin/Detailuser/' . $username[0]["username"]));
+    }
+    public function Notifikasibuku()
+    {
+        $id = $this->uri->segment(3);
+        $judul = $this->admin_model->getJudulBuku($id);
+        $this->admin_model->insertNotifikasiBuku($id);
+        redirect(base_url('Admin/Detailbuku/' . $judul[0]["Judul"]));
+    }
 }

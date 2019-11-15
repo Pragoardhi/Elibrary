@@ -25,6 +25,8 @@ class Home extends CI_Controller
         $data['username'] = $this->session->userdata('username');
         $data['id'] = $this->session->userdata('id');
         $pinjamIdUser = $this->session->userdata('id');
+        $data['listBooks'] = $this->katalog_buku->getBook();
+        $data["listtipe"] = $this->katalog_buku->getTipeBuku();
         $data['PemBooks'] = $this->katalog_buku->getPinjamBooks();
         $this->load->view('navbar/katalog_page', $data);
     }
@@ -112,4 +114,6 @@ class Home extends CI_Controller
         // echo "<div><p> $kembaliTglBook </p></div>";
         // echo "<div><p> $pinjamIdBook </p></div>";
     }
+
+  
 }
