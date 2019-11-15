@@ -26,7 +26,7 @@ class Home extends CI_Controller
         $data['id'] = $this->session->userdata('id');
         $pinjamIdUser = $this->session->userdata('id');
         $data['listBooks'] = $this->katalog_buku->getBook();
-        $data['PemBooks'] = $this->katalog_buku->getPeminjaman($pinjamIdUser);
+        $data['PemBooks'] = $this->katalog_buku->getPinjamBooks();
         $this->load->view('navbar/katalog_page', $data);
     }
 

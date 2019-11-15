@@ -21,4 +21,11 @@ class katalog_buku extends CI_Model
         // echo $data->result_array();
         return $data->result_array();
     }
+
+    public function getPinjamBooks()
+    {
+        $data = $this->db->query("SELECT * FROM [dbo].[Peminjaman]");
+        // echo $data->result_array();
+        return $data->result_array();
+    }
 }
