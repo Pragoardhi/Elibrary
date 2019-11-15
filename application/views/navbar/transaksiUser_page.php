@@ -46,12 +46,10 @@
                                             <th>Tanggal Peminjaman</th>
                                             <th>Batas Pengembalian</th>
                                             <th>Status</th>
-                                            <th>Tanggal Dikembalikan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
-           
                                             $count  = count($listPeminjaman);
                                             if($count == 0){
                                                 echo '<tr>
@@ -61,41 +59,32 @@
                                                     <th>-</th>
                                                     <th>-</th>
                                                     <th>-</th>
-                                                    <th>-</th>
                                                 </tr>';
                                             }
                                             else{
+                                                $no = 1;
                                                 for ($i = 0; $i < $count; $i++){
-                                                    $count1  = count($listBuku);
-                                                    for($j = 0; $j < $count1; $j++){
-                                                        if($listBuku[$j]["ID"] == $listPeminjaman[$i]["ID_Buku"]){
-                                                            $judul = $listBuku[$j]["Judul"];
-                                                            $image = $listBuku[$j]["Image"];
-                                                            break;
-                                                        }
-                                                    }
-                                                    $no = $i + 1;
+                                                    if($listPeminjaman[$i]["Approval"]){
                                                     echo '<tr>';
                                                     echo '<th>' . $no . '</th>';
-                                                    echo '<th>' . $judul . '</th>';
+                                                    echo '<th>' . $listPeminjaman[$i]["Judul"] . '</th>';
                                                     ?>
-                                                        <th><img class="w-50" src="<?php echo base_url('upload/book/' . $image) ?>" /></th>
+                                                        <th><img class="w-50" src="<?php echo base_url('upload/book/' . $listPeminjaman[$i]["Image"]) ?>" /></th>
                                                     <?php
                                                     $tgl_pinjam = date('d F Y', strtotime($listPeminjaman[$i]["Tgl_Peminjaman"]));
                                                     $tgl_kembali = date('d F Y', strtotime($listPeminjaman[$i]["Tgl_Pengembalian"]));
                                                     echo '<th>' . $tgl_pinjam . '</th>';
                                                     echo '<th>' . $tgl_kembali . '</th>';
                                                     $today=date ("YYYY-MM-DD");
-                                                    $tgl_agenda = strtotime($listPeminjaman[$i]["Tgl_Pengembalian"]);
-                                                    $tgl_today = strtotime($today);
-                                                    if ($tgl_agenda < $tgl_today){
-                                                        echo $tgl_agenda < $tgl_today;
-                                                        echo '<th>Dipinjam gak dibalik-balikin</th>';
-                                                    }else if($tgl_agenda >= $tgl_today) {
+                                                    $tgl_today = date('Y-m-d');;
+                                                    if ($listPeminjaman[$i]["Tgl_Pengembalian"] > $tgl_today){
                                                         echo '<th>-</th>';
+                                                    }else {
+                                                        echo '<th>Buku Belum Dikembalikan.</th>';
                                                     }
-                                                    echo '<th>-</th>';
                                                     echo '</tr>';
+                                                    $no = $no + 1;
+                                                    }
                                                 }
                                             }
                                         ?>

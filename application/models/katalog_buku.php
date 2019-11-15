@@ -17,7 +17,18 @@ class katalog_buku extends CI_Model
 
     public function getPeminjaman($id)
     {
-        $data = $this->db->query("SELECT * FROM [dbo].[Peminjaman] WHERE id = '$id'");
+        $data = $this->db->query("SELECT TOP (1000) [eLibrary].[dbo].[Peminjaman].[ID_Peminjaman]
+        ,[eLibrary].[dbo].[Peminjaman].[id]
+        ,[eLibrary].[dbo].[Book].[Judul]
+        ,[eLibrary].[dbo].[Book].[Image]
+        ,[eLibrary].[dbo].[Peminjaman].[Tgl_Peminjaman]
+        ,[eLibrary].[dbo].[Peminjaman].[Tgl_Pengembalian]
+        ,[eLibrary].[dbo].[Peminjaman].[Notifikasi]
+        ,[eLibrary].[dbo].[Peminjaman].[Approval]
+    FROM [eLibrary].[dbo].[Peminjaman]
+    INNER JOIN [eLibrary].[dbo].[Book]
+    ON [eLibrary].[dbo].[Peminjaman].[ID_Buku] = [eLibrary].[dbo].[Book].[ID]
+    WHERE [eLibrary].[dbo].[Peminjaman].[id] = '$id'");
         // echo $data->result_array();
         return $data->result_array();
     }
