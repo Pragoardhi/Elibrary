@@ -20,6 +20,7 @@ class Admin extends CI_Controller
             $data['listuser'] = $this->admin_model->getUser();
             $data['listbuku'] = $this->admin_model->getBuku();
             $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
+            $data['listtipe'] = $this->admin_model->getTipeBuku();
             $this->load->view('admin/dashboard', $data);
         }
     }
@@ -32,6 +33,7 @@ class Admin extends CI_Controller
             $data['listuser'] = $this->admin_model->getUser();
             $data['listbuku'] = $this->admin_model->getBuku();
             $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
+            $data['listtipe'] = $this->admin_model->getTipeBuku();
             $this->load->view('admin/daftarpengguna', $data);
         }
     }
@@ -351,5 +353,12 @@ class Admin extends CI_Controller
         $judul = $this->admin_model->getJudulBuku($id);
         $this->admin_model->insertNotifikasiBuku($id);
         redirect(base_url('Admin/Detailbuku/' . $judul[0]["Judul"]));
+    }
+
+    public function Approval()
+    {
+        $id = $this->uri->segment(3);
+        $this->admin_model->insertApproval($id);
+        redirect(base_url('Admin/transaksibuku'));
     }
 }
