@@ -93,6 +93,7 @@
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian</th>
                                             <th>Approval</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -103,6 +104,7 @@
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian</th>
                                             <th>Approval</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -123,6 +125,7 @@
                                             <?php } else { ?>
                                                 <td><button class="btn btn-danger" onclick="location.href='<?= base_url() ?>Admin/Approval/<?php echo $listtransaksi[$i]["ID_Peminjaman"] ?>'"><i class="fas fa-check"></i></button></td>
                                             <?php } ?>
+                                            <td><button class="btn btn-danger" onclick="location.href='<?= base_url() ?>Admin/Deletetransaksi/<?php echo $listtransaksi[$i]["ID_Peminjaman"] ?>'"><i class="fas fa-trash"></i></button></td>
                                             </tr>
                                             <!-- edit modal -->
                                             <div class="modal fade" id="editModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

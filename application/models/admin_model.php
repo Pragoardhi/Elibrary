@@ -108,6 +108,10 @@ class admin_model extends CI_Model
     {
         $this->db->query("DELETE FROM [dbo].[Tipe_book] WHERE id='$id'");
     }
+    public function deleteTransaksi($id)
+    {
+        $this->db->query("DELETE FROM [dbo].[Peminjaman] WHERE ID_Peminjaman = '$id'");
+    }
     public function addUser($addusername, $addemail, $addstatus, $addpassword, $profile)
     {
         $notifikasi = 1;

@@ -361,4 +361,10 @@ class Admin extends CI_Controller
         $this->admin_model->insertApproval($id);
         redirect(base_url('Admin/transaksibuku'));
     }
+    public function Deletetransaksi()
+    {
+        $id = $this->uri->segment(3);
+        $this->admin_model->deleteTransaksi($id);
+        redirect(base_url('Admin/transaksibuku'));
+    }
 }
