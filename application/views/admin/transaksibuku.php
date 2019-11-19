@@ -92,7 +92,8 @@
                                             <th>Judul Buku</th>
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian</th>
-
+                                            <th>Approval</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -102,7 +103,8 @@
                                             <th>Judul Buku</th>
                                             <th>Tanggal Peminjaman</th>
                                             <th>Tanggal Pengembalian</th>
-
+                                            <th>Approval</th>
+                                            <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
@@ -118,6 +120,12 @@
                                             echo '<td>' . $listtransaksi[$i]["Tgl_Peminjaman"] . '</td>';
                                             echo '<td>' . $listtransaksi[$i]["Tgl_Pengembalian"] . '</td>';
                                             ?>
+                                            <?php if ($listtransaksi[$i]["Approval"] == 1) { ?>
+                                                <td><button class="btn btn-success"><i class="fas fa-check"></i></button></td>
+                                            <?php } else { ?>
+                                                <td><button class="btn btn-danger" onclick="location.href='<?= base_url() ?>Admin/Approval/<?php echo $listtransaksi[$i]["ID_Peminjaman"] ?>'"><i class="fas fa-check"></i></button></td>
+                                            <?php } ?>
+                                            <td><button class="btn btn-danger" onclick="location.href='<?= base_url() ?>Admin/Deletetransaksi/<?php echo $listtransaksi[$i]["ID_Peminjaman"] ?>'"><i class="fas fa-trash"></i></button></td>
                                             </tr>
                                             <!-- edit modal -->
                                             <div class="modal fade" id="editModal<?php echo $i; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -280,14 +288,14 @@
                 buttons: [{
                         extend: 'excelHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         className: 'btn btn-success'
                     },
                     {
                         extend: 'pdfHtml5',
                         exportOptions: {
-                            columns: [0, 1, 2, 3]
+                            columns: [0, 1, 2, 3, 4]
                         },
                         className: 'btn btn-danger'
                     }

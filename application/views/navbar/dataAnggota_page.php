@@ -25,9 +25,6 @@
       <div class="container"  style="margin-bottom: 50px">
         <h1>Data Anggota</h1>
       </div>
-      <br>
-     
-
       <div class="card-body">
         <div class="table-responsive">
         <table class="table table-striped table-bordered" id="myTable" name="tableuser" width="100%" cellspacing="0">
@@ -36,7 +33,6 @@
                 <th>No.</th>
                 <th>Gambar</th>
                 <th>Nama</th>
-                <th>Jabatan</th>
                 <th>Email</th>
             </tr>
         </thead>
@@ -50,7 +46,6 @@
             <td><img src="<?php echo base_url('upload/user/' . $listUser[$i]["image"]) ?>"/></td>
             <?php
                     echo '<td>'. $listUser[$i]["username"] .'</td>';
-                    echo '<td>mantap</td>';
                     echo '<td>'  . $listUser[$i]["email"]   . '</td>';
                     echo '</tr>';
                 }
