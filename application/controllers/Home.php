@@ -7,6 +7,8 @@ class Home extends CI_Controller
     {
         parent::__construct();
         $this->load->model('katalog_buku');
+        
+
     }
     public function index()
     {
@@ -114,6 +116,23 @@ class Home extends CI_Controller
         // echo "<div><p> $kembaliTglBook </p></div>";
         // echo "<div><p> $pinjamIdBook </p></div>";
     }
+
+        public function Detailbuku()
+        {
+            $this->load->model('admin_model');
+            $judul = $this->uri->segment(3);
+            $data['username'] = $this->session->userdata('username');
+            $data['statususer'] = $this->session->userdata('statususer');
+            $data['listbuku'] = $this->admin_model->getBuku();
+            $data['listuser'] = $this->admin_model->getUser();
+            $data['listtipe'] = $this->admin_model->getTipeBuku();
+            $data['listbahasa'] = $this->admin_model->getBahasaBuku();
+            $data['listtransaksi'] = $this->admin_model->getTransaksibuku();
+            $data['detailbuku'] = $this->admin_model->getDetailBuku($judul);
+    
+            $this->load->view('detailBuku_page', $data);
+        }
+    
 
   
 }
