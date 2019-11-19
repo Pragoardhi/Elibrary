@@ -18,9 +18,10 @@
     <?php $this->load->view('template/header.php') ?>
 
 <!-- content-->
-    <div class= "container" style="margin-bottom: 50px">
+    <div class= "container"  style="margin-bottom: 50px">
 
-    <form style="background-image: url(<?php echo base_url('assets') ?>/image/bg-login.jpg)" method="post" action="<?= base_url('Login/login') ?>">
+    <form style="width:100%;">
+        
         <?= $this->session->flashdata('message'); ?>
         <div class="card mb-3" id="card1" style="max-width: 18rem;">
             <div class="form-group text-center">

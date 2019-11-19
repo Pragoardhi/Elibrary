@@ -51,9 +51,8 @@
         <div class="row">
             <?php
 
-                $count  = count($listBooks);
-                $tipe = null;
-
+            $count  = count($listBooks);
+            $tipe = null;
 
                 if(isset($_POST['tipebuku']) == 1){
                     $tipe = $_POST['tipebuku'];
@@ -80,6 +79,7 @@
                                     }
                                     if($param == true){?>
                                         <button class="btn btn-dark" id="pnjbtn" type="button" onclick="alertku()"> <i class="fas fa-edit"></i>Pinjam</button>
+                                        <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listBooks[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
                                         <script>
                                             function alertku() {
                                                 alert("Buku sudah dipinjam!!!");
@@ -87,6 +87,7 @@
                                         </script>
                                     <?php } else {?>
                                         <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
+                                        <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listBooks[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
                                     <?php } ?>
                                     <?php
                                     echo '<br>';
@@ -133,6 +134,7 @@
                             echo '<p>'  . $listBooks[$i]["Penulis"] . '</p>';
                             echo '<p>'  . $listBooks[$i]["Year"]    . '</p>';
                             ?>
+
                     <?php if ($this->session->userdata('statususer') == "login") { 
                             $countPem  = count($PemBooks);
                             $param = false;
@@ -151,7 +153,7 @@
                                 </script>
                             <?php } else {?>
                                 <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
-                                <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listbuku[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
+                                <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listBooks[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
 
                             <?php } ?>
                             <?php
@@ -189,7 +191,7 @@
                         </div>
                         <?php }} ?>
                     <?php } ?>
-                <?php }else{
+                <?php }}else{
                     for ($i = 0; $i < $count; $i++) {
                         echo '<div class="col-lg-3" style="text-align: center">';
                     ?>
@@ -211,6 +213,7 @@
                                 }
                                 if($param == true){?>
                                     <button class="btn btn-dark" id="pnjbtn" type="button" onclick="alertku()"> <i class="fas fa-edit"></i>Pinjam</button>
+                                    <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listBooks[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
                                     <script>
                                         function alertku() {
                                             alert("Buku sudah dipinjam!!!");
@@ -218,8 +221,7 @@
                                     </script>
                                 <?php } else {?>
                                     <button class="btn btn-dark" id="pnjbtn" type="button" data-toggle="modal" data-target="#pinjamModal<?php echo $i; ?>"> <i class="fas fa-edit"></i>Pinjam</button>
-
-                                    <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listbuku[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
+                                    <button class="btn btn-dark" onclick="location.href='<?= base_url() ?>Home/Detailbuku/<?php echo $listBooks[$i]["Judul"] ?>'"><i class="fas fa-align-justify">Detail</i></button>
                                 <?php } ?>
                             <?php
                                 echo '<br>';
