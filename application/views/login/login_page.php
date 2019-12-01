@@ -12,18 +12,18 @@
     <title>Login</title>
 </head>
 
-<body>
+<body style="background-image: url(<?php echo base_url('assets') ?>/image/bg-login.jpg)">
 
 <!-- navbar -->
     <?php $this->load->view('template/header.php') ?>
 
 <!-- content-->
-    <div class= "container"  style="margin-bottom: 50px">
+    <div class= "container" style="margin-top: 50px; margin-bottom: 50px;">
 
-    <form style="width:100%;">
+    <form style="width:100%; ">
         
         <?= $this->session->flashdata('message'); ?>
-        <div class="card mb-3" id="card1" style="max-width: 18rem;">
+        <div class="card mb-3" id="card1" style="max-width: 30rem;">
             <div class="form-group text-center">
                 <div id="fontMasuk" class="text-center">Masuk</div>
 
@@ -41,10 +41,10 @@
                         }, 3000);
                     </script>
                 <?php } ?>
-                <input type="email" name="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                <input type="email" name="email" style="margin-left: 2.5rem; max-width: 25rem;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
             </div>
             <div class="form-group text-center">
-                <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" style="margin-left: 2.5rem; max-width: 25rem;" class="form-control" id="exampleInputPassword1" placeholder="Password">
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-dark" id="buttonSubmit">Masuk</button>
