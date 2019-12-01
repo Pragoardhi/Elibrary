@@ -12,18 +12,12 @@
     <title>Login</title>
 </head>
 
-<body style="background-image: url(<?php echo base_url('assets') ?>/image/bg-login.jpg)">
-
-<!-- navbar -->
+<body>
     <?php $this->load->view('template/header.php') ?>
 
-<!-- content-->
-    <div class= "container" style="margin-top: 50px; margin-bottom: 50px;">
-
-    <form style="width:100%; ">
-        
+    <form style="background-image: url(<?php echo base_url('assets') ?>/image/bg-login.jpg)" method="post" action="<?= base_url('Login/login') ?>">
         <?= $this->session->flashdata('message'); ?>
-        <div class="card mb-3" id="card1" style="max-width: 30rem;">
+        <div class="card" id="card1">
             <div class="form-group text-center">
                 <div id="fontMasuk" class="text-center">Masuk</div>
 
@@ -41,10 +35,10 @@
                         }, 3000);
                     </script>
                 <?php } ?>
-                <input type="email" name="email" style="margin-left: 2.5rem; max-width: 25rem;" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
+                <input type="email" name="email" class="form-control-lg" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Email">
             </div>
             <div class="form-group text-center">
-                <input type="password" name="password" style="margin-left: 2.5rem; max-width: 25rem;" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                <input type="password" name="password" class="form-control-lg" id="exampleInputPassword1" placeholder="Password">
             </div>
             <div class="text-center">
                 <button type="submit" class="btn btn-dark" id="buttonSubmit">Masuk</button>
@@ -52,8 +46,6 @@
 
         </div>
     </form>
-   
-    </div>
 
 
 
@@ -64,7 +56,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 </body>
-
 <?php $this->load->view('template/footer.php') ?>
 
 </html>
